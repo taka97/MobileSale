@@ -5,11 +5,11 @@ import rootReducer from '../reducers';
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const preloadedState = {};
+// const preloadedState = {};
 
 const store = createStore(
   rootReducer,
-  preloadedState,
+  // preloadedState,
   composeEnhancers(
     applyMiddleware(thunk),
   ),
