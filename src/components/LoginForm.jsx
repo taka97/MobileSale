@@ -1,8 +1,12 @@
 import React from "react";
-import "antd/dist/antd.css";
-import "../index.css";
+import { connect } from 'react-redux';
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { Redirect, Link } from "react-router-dom";
+
+import { actLoginRequest, actGetUser, actLogout, actCallbackLink } from '../actions/Auth';
+
+import "antd/dist/antd.css";
+import "../index.css";
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
@@ -84,6 +88,25 @@ class NormalLoginForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  username: state.auth.username,
+  usertoken: state.auth.usertoken,
+  email: state.auth.email,
+  phone: state.auth.phone,
+  fullname: state.auth.fullname,
+  avatar: state.auth.avatar,
+
+  err: state.auth.err,
+  callbackLink: state.auth.callbackLink
+});
+
+const mapDispatchToProps = dispatch => ({
+  actLoginRequest: (user) => dispatch(actLoginRequest(user)),
+  actGetUser: () => dispatch(actGetUser()),
+  actLogout: () => dispatch(actLogout()),
+  actCallbackLink: (link) => dispatch(actCallbackLink(link))
+});
+
 const LoginForm = Form.create({ name: "normal_login" })(NormalLoginForm);
 
-export default LoginForm;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
