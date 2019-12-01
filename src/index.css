@@ -1,0 +1,32 @@
+.login-form {
+  max-width: 300px;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+
+.register-form {
+  max-width: 600px;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+.title {
+  color: #61dafb;
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 40%;
+  margin-right: 40%;
+}
+
+.avatar-uploader > .ant-upload {
+  margin-left: 35%;
+  margin-right: 35%;
+  width: 128px;
+  height: 128px;
+}
