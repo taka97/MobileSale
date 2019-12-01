@@ -1,9 +1,14 @@
 import React from "react";
-import { connect } from 'react-redux';
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import { connect } from "react-redux";
+import { Form, Icon, Input, Button, Checkbox, Modal } from "antd";
 import { Redirect, Link } from "react-router-dom";
 
-import { actLoginRequest, actGetUser, actLogout, actCallbackLink } from '../actions/Auth';
+import {
+  actLoginRequest,
+  actGetUser,
+  actLogout,
+  actCallbackLink
+} from "../actions/Auth";
 
 import "antd/dist/antd.css";
 import "../index.css";
@@ -14,6 +19,8 @@ class NormalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        const { actLoginRequest } = this.props;
+        actLoginRequest(values);
       }
     });
   };
@@ -23,19 +30,22 @@ class NormalLoginForm extends React.Component {
     const { getFieldDecorator } = this.props.form;
     actGetUser();
 
-    if (username && username !== "undefined") {
+    if (username && username !== undefined) {
       if (callbackLink) return <Redirect to={callbackLink} />;
       return <Redirect to="/" />;
     }
     if (err === 400) {
-      document.getElementById("msg").innerHTML = "Đăng nhập thất bại";
+      const { info } = Modal;
+      info({
+        title: "Thông báo",
+        content: `Đăng nhập thất bại`
+      });
     }
 
     return (
       <div>
         <p className="title">LOGIN</p>
         <Form onSubmit={this.handleSubmit} className="login-form">
-          <p id="msg" style={{ color: "red" }} />
           <Form.Item>
             {getFieldDecorator("username", {
               rules: [
@@ -95,16 +105,17 @@ const mapStateToProps = state => ({
   phone: state.auth.phone,
   fullname: state.auth.fullname,
   avatar: state.auth.avatar,
+  stratery: state.auth.stratery,
 
   err: state.auth.err,
   callbackLink: state.auth.callbackLink
 });
 
 const mapDispatchToProps = dispatch => ({
-  actLoginRequest: (user) => dispatch(actLoginRequest(user)),
+  actLoginRequest: user => dispatch(actLoginRequest(user)),
   actGetUser: () => dispatch(actGetUser()),
   actLogout: () => dispatch(actLogout()),
-  actCallbackLink: (link) => dispatch(actCallbackLink(link))
+  actCallbackLink: link => dispatch(actCallbackLink(link))
 });
 
 const LoginForm = Form.create({ name: "normal_login" })(NormalLoginForm);

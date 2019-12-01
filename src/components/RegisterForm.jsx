@@ -1,7 +1,8 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { Form, Input, Select, Button } from "antd";
+import { Form, Input, Select, Button, Modal } from "antd";
 import Avatar from "./Avatar";
+import { callApiRegister } from "../utils/apiCaller";
 
 const { Option } = Select;
 
@@ -16,7 +17,20 @@ class RegistrationForm extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+        return callApiRegister(values)
+          .then(() => {
+            const { history } = this.props;
+            history.push("/login");
+          })
+          .catch(() => {
+            const { info } = Modal;
+            info({
+              title: "Thông báo",
+              content: `Đăng ký thất bại`
+            });
+          });
       }
+      return err;
     });
   };
 

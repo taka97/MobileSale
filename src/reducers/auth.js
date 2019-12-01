@@ -1,5 +1,5 @@
 const initState = {
-    username: undefined,
+    username: 'a',
     email: undefined,
     phone: undefined,
     fullname: undefined,
@@ -17,6 +17,8 @@ export default function auth(state = initState, action) {
                 ...state,
                 username: action.user.username,
                 email: action.user.email,
+                phone: action.user.phone,
+                fullname: action.user.fullname,
                 avatar: action.user.avatar,
                 usertoken: action.user.token,
                 err: undefined
@@ -27,6 +29,8 @@ export default function auth(state = initState, action) {
                 ...state,
                 username: undefined,
                 email: undefined,
+                phone: undefined,
+                fullname: undefined,
                 avatar: undefined,
                 usertoken: undefined,
                 err: 400
