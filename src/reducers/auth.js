@@ -1,5 +1,5 @@
 const initState = {
-    username: 'a',
+    username: undefined,
     email: undefined,
     phone: undefined,
     fullname: undefined,
