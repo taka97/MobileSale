@@ -4,7 +4,7 @@ import "antd/dist/antd.css";
 import { Steps } from 'antd';
 const { Step } = Steps;
 
-const PaymentProcess = () => (
+const Process = () => (
   <Steps current={0}>
     <Step title="Chọn địa chỉ thanh toán" />
     <Step title="Chọn phương thức thanh toán" />
@@ -13,4 +13,4 @@ const PaymentProcess = () => (
   </Steps>
 );
 
-export default PaymentProcess;
+export default Process;

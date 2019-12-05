@@ -14,11 +14,11 @@ const Root = () => (
   <Provider store={store}>
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/cart" component={CartPage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/register" component={RegisterPage} />
-        <Route exact path="/payment" component={PaymentPage} />
+        <Route path="/cart" component={CartPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/register" component={RegisterPage} />
+        <Route path="/payment" component={PaymentPage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </BrowserRouter>
   </Provider>
