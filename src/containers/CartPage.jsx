@@ -1,13 +1,8 @@
 import React from "react";
-import Navbar from "../components/Navbar";
+import CartList from "../components/CartList"
 
-function HomePage() {
-  return (
-    <div>
-      <Navbar />
-      <p>CART PAGE</p>
-    </div>
-  );
+const CartPage = () => {
+  return <CartList></CartList>
 }
 
-export default HomePage;
+export default CartPage;

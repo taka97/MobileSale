@@ -8,6 +8,7 @@ import HomePage from "./HomePage";
 import CartPage from "./CartPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
+import PaymentPage from "./PaymentPage";
 
 const Root = () => (
   <Provider store={store}>
@@ -17,6 +18,7 @@ const Root = () => (
         <Route exact path="/cart" component={CartPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/payment" component={PaymentPage} />
       </Switch>
     </BrowserRouter>
   </Provider>
