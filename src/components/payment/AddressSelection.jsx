@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "antd/dist/antd.css";
-import { Descriptions, Card } from 'antd'
-
-
+import { Descriptions, Card, Button } from 'antd'
+import { Link } from "react-router-dom";
 
 const AddressSelection = () => {
 	const [isActive, changeActive] = useState(false);
@@ -11,32 +10,41 @@ const AddressSelection = () => {
 	}
 	
 	return (
-		<div>
-			<Card hoverable style={{ minWidth: 700, maxWidth: 1000, borderRadius: 10 }} onClick={changeAddress} className={isActive ? "active-address" : ""} >
-				<Descriptions title="User Info">
-					<Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
-					<Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
-					<Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
-					<Descriptions.Item label="Remark">empty</Descriptions.Item>
-					<Descriptions.Item label="Address">
-						No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-					</Descriptions.Item>
-				</Descriptions>
-			</Card>
-			<div style={{ height: 30 }}>
-
+		<div >
+			<div className="address-list mt-36">
+				<Card hoverable onClick={changeAddress} className={(isActive ? "active" : "") + " address-card" + " mg-auto"} >
+					<Descriptions>
+						<Descriptions.Item>Nguyen Van A</Descriptions.Item>
+						<Descriptions.Item>0929612345</Descriptions.Item>
+						<br />
+						<Descriptions.Item>
+							227 Nguyen Van Cu, P4, Q3
+						</Descriptions.Item>
+					</Descriptions>
+				</Card>
+				<div style={{ height: 30 }}></div>
+				<Card hoverable onClick={changeAddress} className={(!isActive ? "active" : "") + " address-card" + " mg-auto"} >
+					<Descriptions>
+						<Descriptions.Item>Nguyen Van A</Descriptions.Item>
+						<Descriptions.Item>0929612345</Descriptions.Item>
+						<br />
+						<Descriptions.Item>
+							227 Nguyen Van Cu, P4, Q3
+						</Descriptions.Item>
+					</Descriptions>
+				</Card>
+				<div style={{ height: 30 }}></div>
+				<Button style={{marginLeft: 50}} shape="circle" icon="plus" />
 			</div>
-			<Card hoverable style={{ minWidth: 700, maxWidth: 1000, borderRadius: 10 }} onClick={changeAddress} className={!isActive ? "active-address" : ""} >
-				<Descriptions title="User Info">
-					<Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
-					<Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
-					<Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
-					<Descriptions.Item label="Remark">empty</Descriptions.Item>
-					<Descriptions.Item label="Address">
-						No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-					</Descriptions.Item>
-				</Descriptions>
-			</Card>
+			<div className="mt-36">
+				<div className="group-button-center">
+					<Button className="mr-80" disabled>Quay lại</Button>
+					<Link to="payment/select-method">
+						<Button type="primary">Tiếp tục</Button>
+					</Link>
+
+				</div>		
+			</div>
 		</div>
 	);
 }

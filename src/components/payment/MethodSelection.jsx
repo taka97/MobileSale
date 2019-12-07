@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "antd/dist/antd.css";
-import { Descriptions, Card } from 'antd'
+import { Card, Button } from 'antd'
+import { Link } from "react-router-dom";
 
 
 
@@ -12,31 +13,22 @@ const MethodSelection = () => {
 	
 	return (
 		<div>
-			<Card hoverable style={{ minWidth: 700, maxWidth: 1000, borderRadius: 10 }} onClick={changeAddress} className={isActive ? "active-address" : ""} >
-				<Descriptions title="User Info">
-					<Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
-					<Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
-					<Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
-					<Descriptions.Item label="Remark">empty</Descriptions.Item>
-					<Descriptions.Item label="Address">
-						No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-					</Descriptions.Item>
-				</Descriptions>
-			</Card>
-			<div style={{ height: 30 }}>
-
+			<div className="method-container mt-64">
+				<Card title="ATM" hoverable onClick={changeAddress} className={(isActive ? "active " : "") + "card-atm " + "inline-block " + "mr-36"} >
+				</Card>
+				<Card title="Thanh toán khi nhận hàng" hoverable onClick={changeAddress} className={(!isActive ? "active " : "") + "card-atm " + "inline-block"} >
+				</Card>
 			</div>
-			<Card hoverable style={{ minWidth: 700, maxWidth: 1000, borderRadius: 10 }} onClick={changeAddress} className={!isActive ? "active-address" : ""} >
-				<Descriptions title="User Info">
-					<Descriptions.Item label="UserName">Zhou Maomao</Descriptions.Item>
-					<Descriptions.Item label="Telephone">1810000000</Descriptions.Item>
-					<Descriptions.Item label="Live">Hangzhou, Zhejiang</Descriptions.Item>
-					<Descriptions.Item label="Remark">empty</Descriptions.Item>
-					<Descriptions.Item label="Address">
-						No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-					</Descriptions.Item>
-				</Descriptions>
-			</Card>
+			<div className="mt-48">
+				<div className="group-button-center">
+				<Link to="/payment">
+					<Button className="mr-80">Quay lại</Button>
+				</Link>
+					<Link to="/payment/confirm">
+						<Button type="primary">Tiếp tục</Button>
+					</Link>
+				</div>		
+			</div>
 		</div>
 	);
 }

@@ -31,12 +31,101 @@
   height: 128px;
 }
 
+/* style system */
+
+
+/* payment */
+.payment-process {
+  max-width: 1013px;
+  min-width: 700px;
+  margin: auto;
+}
+.address-list {
+  width: 700px;
+  margin: auto;
+}
+
+.mt-24 {
+  margin-top: 24px;
+}
+.mb-24 {
+  margin-bottom: 24px;
+}
+.mr-24 {
+  margin-right: 24px;
+}
+.mt-36 {
+  margin-top: 36px;
+}
+.mb-36 {
+  margin-bottom: 36px;
+}
+.mr-36 {
+  margin-right: 36px;
+}
+.mr-48 {
+  margin-right: 48px;
+}
+.mt-48 {
+  margin-top: 48px;
+}
+.mt-64 {
+  margin-top: 64px;
+}
+.mr-80 {
+  margin-right: 80px;
+}
+.mg-auto {
+  margin: auto;
+}
+.grid {
+  display: grid;
+}
+.center {
+  text-align: center;
+}
+.inline-block {
+  display: inline-block;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+.active {
+  border: 1px solid #7b7be3;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+
 /* address */
-.active-address {
+.address-card {
+  width: 600px;
+  border-radius: 10px;
+}
+
+.group-button-center {
+  width: 300px;
+  margin: auto;
+}
+.active:hover {
   border: 1px solid #7b7be3;
   border-radius: 10px;
 }
-.active-address:hover {
-  border: 1px solid #7b7be3;
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+
+/* Payment method */
+.card-atm {
+  width: 250px;
+  height: 140px;
+  text-align: center;
+  vertical-align: center;
   border-radius: 10px;
+}
+.method-container {
+  width: 600px;
+  margin: auto;
 }
