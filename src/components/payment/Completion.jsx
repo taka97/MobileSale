@@ -1,20 +1,28 @@
 import React from 'react';
+import { connect } from "react-redux";
 import { Result, Button } from 'antd';
+import { Link } from "react-router-dom";
 
-const Completion = () => {
-    return (
-        <Result
-          status="success"
-          title="Successfully Purchased Cloud Server ECS!"
-          subTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-          extra={[
-            <Button type="primary" key="console">
-              Go Console
-            </Button>,
-            <Button key="buy">Buy Again</Button>,
-          ]}
-        />
-    );
+import { reset } from "../../actions/step";
+
+const Completion = ({ reset }) => {
+  const resetStep = () => {
+    reset();
+  };
+
+  return (
+      <Result
+        status="success"
+        title="Cảm ơn bạn đã mua hàng!"
+        extra={[
+          <Link to="/">
+            <Button type="primary" key="console" onClick={resetStep}>
+            Về trang chủ
+          </Button>
+          </Link>,
+        ]}
+      />
+  );
 };
 
-export default Completion;
+export default connect(null, { reset })(Completion);

@@ -46,34 +46,34 @@
 }
 
 .mt-24 {
-  margin-top: 24px;
+  margin-top: 24px !important;
 }
 .mb-24 {
-  margin-bottom: 24px;
+  margin-bottom: 24px !important;
 }
 .mr-24 {
-  margin-right: 24px;
+  margin-right: 24px !important;
 }
 .mt-36 {
-  margin-top: 36px;
+  margin-top: 36px !important;
 }
 .mb-36 {
-  margin-bottom: 36px;
+  margin-bottom: 36px !important;
 }
 .mr-36 {
-  margin-right: 36px;
+  margin-right: 36px !important;
 }
 .mr-48 {
-  margin-right: 48px;
+  margin-right: 48px !important;
 }
 .mt-48 {
-  margin-top: 48px;
+  margin-top: 48px !important;
 }
 .mt-64 {
-  margin-top: 64px;
+  margin-top: 64px !important;
 }
 .mr-80 {
-  margin-right: 80px;
+  margin-right: 80px !important;
 }
 .mg-auto {
   margin: auto;
@@ -87,7 +87,9 @@
 .inline-block {
   display: inline-block;
 }
-
+.uppercase {
+  text-transform: uppercase;
+}
 .space-between {
   justify-content: space-between;
 }
@@ -116,7 +118,12 @@
 .inline-block {
   display: inline-block;
 }
-
+.bold {
+  font-weight: bold;
+}
+.number {
+  text-align: right;
+}
 /* Payment method */
 .card-atm {
   width: 250px;
@@ -128,4 +135,20 @@
 .method-container {
   width: 600px;
   margin: auto;
+}
+
+/* Confirmation */
+.confirmation {
+  max-width: 900px;
+  margin: auto;
+}
+.card-summary {
+  border-radius: 10px;
+  max-width: 600px;
+}
+.summary {
+  width: 200px;
+}
+.btn-confirm {
+  width: 100%;
 }
