@@ -55,9 +55,17 @@ class Navbar extends React.Component {
             <Menu.Item key="setting:4">Option 4</Menu.Item>
           </Menu.ItemGroup>
         </SubMenu>
-        {cart}
+        <Menu.Item key="cart">
+          <Link to="/cart">Giỏ hàng</Link>
+        </Menu.Item>
+        <Menu.Item key="payment">
+          <Link to="/payment">Thanh toán</Link>
+        </Menu.Item>
+
+        {/* {cart}
         {login_logout}
-        {register}
+        {register} */}
+
       </Menu>
     );
   }
