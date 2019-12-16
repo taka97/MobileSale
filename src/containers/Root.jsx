@@ -1,6 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Layout } from "antd";
 
 import store from "../store";
 
@@ -9,17 +10,32 @@ import CartPage from "./CartPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 import PaymentPage from "./PaymentPage";
+import Navbar from "../components/Navbar";
+import MyFooter from "../components/Footer";
+import "./style.css";
+
+const { Header, Content, Footer } = Layout;
 
 const Root = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <Switch>
-        <Route path="/cart" component={CartPage} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/register" component={RegisterPage} />
-        <Route path="/payment" component={PaymentPage} />
-        <Route path="/" component={HomePage} />
-      </Switch>
+      <Layout>
+        <Header className="transparent">
+          <Navbar></Navbar>
+        </Header>
+        <Content style={{ minHeight: 720 }}>
+          <Switch>
+            <Route path="/cart" component={CartPage} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/payment" component={PaymentPage} />
+            <Route path="/" component={HomePage} />
+          </Switch>
+        </Content>
+        <Footer className="footer">
+          <MyFooter></MyFooter>
+        </Footer>
+      </Layout>
     </BrowserRouter>
   </Provider>
 );
