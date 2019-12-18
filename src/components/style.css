@@ -3,16 +3,16 @@
   position: relative;
   font-family: "Montserrat", sans-serif;
   width: 100%;
-  background: #4ecdc4; /* fallback for old browsers */
+  background: hsl(240, 56%, 55%); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #556270,
-    #4ecdc4
+    hsl(240, 72%, 55%),
+    hsl(240, 56%, 65%)
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #556270,
-    #4ecdc4
+    hsl(240, 72%, 55%),
+    hsl(240, 46%, 65%)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .navbar::after {
@@ -24,7 +24,10 @@
   font-size: 14px;
 }
 .navbar .ant-menu-item a {
-  color: #b6d5d4 !important;
+  color: hsl(240, 33%, 90%) !important;
+}
+.navbar .ant-menu-item a:hover {
+  color: hsl(240, 10%, 94%) !important;
 }
 .navbar .ant-menu-item-selected a {
   color: white !important;
@@ -52,20 +55,17 @@
 }
 .navbar .second-floor > ul {
   padding-top: 10px;
-  background: #4ecdc4; /* fallback for old browsers */
+  background: hsl(240, 56%, 55%); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #556270,
-    #4ecdc4
+    hsl(240, 72%, 55%),
+    hsl(240, 56%, 65%)
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #556270,
-    #4ecdc4
+    hsl(240, 72%, 55%),
+    hsl(240, 46%, 65%)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-.navbar .category {
-  display: inline-block;
 }
 .navbar .logo {
   color: #aef0fc;
@@ -122,16 +122,16 @@
   color: white;
   font-size: 14px;
   width: 100%;
-  background: #4ecdc4; /* fallback for old browsers */
+  background: hsl(240, 56%, 55%); /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    #556270,
-    #4ecdc4
+    hsl(240, 72%, 55%),
+    hsl(240, 56%, 65%)
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to right,
-    #556270,
-    #4ecdc4
+    hsl(240, 72%, 55%),
+    hsl(240, 46%, 65%)
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 

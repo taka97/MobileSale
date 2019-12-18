@@ -12,6 +12,8 @@ import RegisterPage from "./RegisterPage";
 import PaymentPage from "./PaymentPage";
 import Navbar from "../components/Navbar";
 import MyFooter from "../components/Footer";
+import CategoryPage from "../containers/CategoryPage";
+import DetailPage from "../containers/DetailPage";
 import "./style.css";
 
 const { Header, Content, Footer } = Layout;
@@ -29,6 +31,8 @@ const Root = () => (
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route path="/payment" component={PaymentPage} />
+            <Route path="/category" component={CategoryPage} />
+            <Route path="/detail" component={DetailPage} />
             <Route path="/" component={HomePage} />
           </Switch>
         </Content>

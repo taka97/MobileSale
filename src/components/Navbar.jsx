@@ -66,10 +66,9 @@ class Navbar extends React.Component {
         <div class="second-floor">
           <Menu
             id="myHeader"
-            className="category"
+            className="category transparent"
             mode="horizontal"
             theme="dark"
-            className="transparent"
             style={{ zIndex: 1, width: "100%" }}
           >
             <SubMenu
@@ -80,14 +79,13 @@ class Navbar extends React.Component {
                 </span>
               }
             >
-              <Menu.ItemGroup title="Item 1">
-                <Menu.Item key="setting:1">Option 1</Menu.Item>
-                <Menu.Item key="setting:2">Option 2</Menu.Item>
-              </Menu.ItemGroup>
-              <Menu.ItemGroup title="Item 2">
-                <Menu.Item key="setting:3">Option 3</Menu.Item>
-                <Menu.Item key="setting:4">Option 4</Menu.Item>
-              </Menu.ItemGroup>
+              <Menu.Item key="iphone">
+                <Link to="/category">Iphone</Link>
+              </Menu.Item>
+              <Menu.Item key="samsung">Samsung</Menu.Item>
+              <Menu.Item key="xiaomi">Xiaomi</Menu.Item>
+              <Menu.Item key="oppo">Oppo</Menu.Item>
+              <Menu.Item key="vsmart">Vsmart</Menu.Item>
             </SubMenu>
             <Link to="/">
               <Icon type="home" className="logo" />
