@@ -1,38 +1,24 @@
-.login-form {
-  max-width: 300px;
-  margin-left: 40%;
-  margin-right: 40%;
-}
-.login-form-forgot {
-  float: right;
-}
-.login-form-button {
-  width: 100%;
+/* Layout */
+.ant-layout-header {
+  padding: 0;
 }
 
-.register-form {
-  max-width: 600px;
-  margin-left: 30%;
-  margin-right: 30%;
+.ant-layout-content {
+  margin-top: 50px;
+}
+
+.container {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  border-radius: 4px;
+  background-color: white;
 }
 
 .title {
   color: #61dafb;
-  font-size: 50px;
-  font-weight: bold;
-  margin-left: 40%;
-  margin-right: 40%;
-}
-
-.avatar-uploader > .ant-upload {
-  margin-left: 35%;
-  margin-right: 35%;
-  width: 128px;
-  height: 128px;
+  font-size: 24px;
 }
 
 /* style system */
-
 
 /* payment */
 .payment-process {

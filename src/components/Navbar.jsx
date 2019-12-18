@@ -1,7 +1,8 @@
 import React from "react";
 import "antd/dist/antd.css";
+import "./style.css";
 import { connect } from "react-redux";
-import { Menu } from "antd";
+import { Menu, Icon, Input } from "antd";
 import { Link } from "react-router-dom";
 import {
   actLoginRequest,
@@ -41,32 +42,68 @@ class Navbar extends React.Component {
       );
     }
     return (
-      <Menu mode="horizontal" theme="dark">
-        <Menu.Item key="home">
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <SubMenu title={<span className="submenu-title-wrapper">Brand</span>}>
-          <Menu.ItemGroup title="Item 1">
-            <Menu.Item key="setting:1">Option 1</Menu.Item>
-            <Menu.Item key="setting:2">Option 2</Menu.Item>
-          </Menu.ItemGroup>
-          <Menu.ItemGroup title="Item 2">
-            <Menu.Item key="setting:3">Option 3</Menu.Item>
-            <Menu.Item key="setting:4">Option 4</Menu.Item>
-          </Menu.ItemGroup>
-        </SubMenu>
-        <Menu.Item key="cart">
-          <Link to="/cart">Giỏ hàng</Link>
-        </Menu.Item>
-        <Menu.Item key="payment">
-          <Link to="/payment">Thanh toán</Link>
-        </Menu.Item>
+      <div class="navbar">
+        {/* First floor */}
+        <div>
+          <Menu
+            mode="horizontal"
+            theme="dark"
+            className="float-right transparent"
+          >
+            <Menu.Item key="login">
+              <Link to="/login">Login</Link>
+            </Menu.Item>
+            <Menu.Item key="register">
+              <Link to="/register">Register</Link>
+            </Menu.Item>
+            <Menu.Item key="payment">
+              <Link to="/payment">Thanh toán (temp)</Link>
+            </Menu.Item>
+          </Menu>
+        </div>
 
-        {/* {cart}
-        {login_logout}
-        {register} */}
-
-      </Menu>
+        {/* Second floor */}
+        <div class="second-floor">
+          <Menu
+            id="myHeader"
+            className="category transparent"
+            mode="horizontal"
+            theme="dark"
+            style={{ zIndex: 1, width: "100%" }}
+          >
+            <SubMenu
+              title={
+                <span className="submenu-title-wrapper">
+                  <Icon type="menu" />
+                  <span class="auto-hide">All category</span>
+                </span>
+              }
+            >
+              <Menu.Item key="iphone">
+                <Link to="/category">Iphone</Link>
+              </Menu.Item>
+              <Menu.Item key="samsung">Samsung</Menu.Item>
+              <Menu.Item key="xiaomi">Xiaomi</Menu.Item>
+              <Menu.Item key="oppo">Oppo</Menu.Item>
+              <Menu.Item key="vsmart">Vsmart</Menu.Item>
+            </SubMenu>
+            <Link to="/">
+              <Icon type="home" className="logo" />
+            </Link>
+            <Link to="/cart">
+              <Icon type="shopping" className="cart cart-2" />
+            </Link>
+            <Input
+              className="search"
+              addonAfter={<Icon type="search" className="search-button" />}
+              placeholder="Type your keyword"
+            />
+            <Link to="/cart">
+              <Icon type="shopping" className="cart cart-1" />
+            </Link>
+          </Menu>
+        </div>
+      </div>
     );
   }
 }
