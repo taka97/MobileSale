@@ -42,7 +42,7 @@ class Navbar extends React.Component {
       );
     }
     return (
-      <div class="navbar">
+      <div className="navbar">
         {/* First floor */}
         <div>
           <Menu
@@ -63,7 +63,7 @@ class Navbar extends React.Component {
         </div>
 
         {/* Second floor */}
-        <div class="second-floor">
+        <div className="second-floor">
           <Menu
             id="myHeader"
             className="category transparent"
@@ -75,7 +75,7 @@ class Navbar extends React.Component {
               title={
                 <span className="submenu-title-wrapper">
                   <Icon type="menu" />
-                  <span class="auto-hide">All category</span>
+                  <span className="auto-hide">All category</span>
                 </span>
               }
             >

@@ -75,7 +75,7 @@ const Confirmation = ({ incStep, decStep }) => {
             </Row>
           </Card>
         </Col>
-        <Col span={6} className="summary container">
+        <Col span={6} className="summary container" style={{ padding: 24 }}>
           <p className="uppercase">Đơn hàng</p>
           <p className="number">5,000,000vnd</p>
           <p className="uppercase">Phí vận chuyển</p>

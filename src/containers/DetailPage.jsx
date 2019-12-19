@@ -1,9 +1,20 @@
-import React from "react";
-import { Card, Button, Tag, Tabs } from "antd";
+import React, { useState } from "react";
+import { Card, Button, Tag, Tabs, InputNumber } from "antd";
 
 const { TabPane } = Tabs;
 
 const DetailPage = () => {
+  const imgs = [
+    "https://via.placeholder.com/150x150",
+    "https://via.placeholder.com/90x90",
+    "https://via.placeholder.com/200x200"
+  ];
+
+  const [bigImg, updateImg] = useState(imgs[0]);
+  const changeImg = e => {
+    updateImg(e.target.src);
+  };
+
   return (
     <div class="boundary" style={{ backgroundColor: "transparent" }}>
       <div class="short-detail">
@@ -12,19 +23,15 @@ const DetailPage = () => {
           style={{ height: "auto", float: "left" }}
         >
           <div class="img-container">
-            <img src="https://via.placeholder.com/150" alt="img" />
+            <img src={bigImg} alt="img" />
           </div>
           <div class="content">
             <ul class="img-group">
-              <li>
-                <img src="https://via.placeholder.com/90x90" alt="img" />
-              </li>
-              <li>
-                <img src="https://via.placeholder.com/90x90" alt="img" />
-              </li>
-              <li>
-                <img src="https://via.placeholder.com/90x90" alt="img" />
-              </li>
+              {imgs.map((value, index) => (
+                <li onClick={changeImg}>
+                  <img src={value} alt="img" key={index} />
+                </li>
+              ))}
             </ul>
           </div>
         </Card>
@@ -47,14 +54,9 @@ const DetailPage = () => {
               <Tag color="#87d068">#87d068</Tag>
               <Tag color="#108ee9">#108ee9</Tag>
             </div>
-            <div>
-              <input
-                type="number"
-                name="amount"
-                defaultValue="1"
-                style={{ width: 50 }}
-              />
-              <Button className="card-button" style={{ marginLeft: 50 }}>
+            <div style={{ marginTop: 24 }}>
+              <InputNumber min={1} max={10} defaultValue={1} />
+              <Button type="primary" style={{ marginLeft: 50 }}>
                 Add to cart
               </Button>
             </div>

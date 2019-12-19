@@ -221,3 +221,12 @@
 .process {
   padding: 24px;
 }
+
+/* Cart list */
+.delete {
+  color: #b10707;
+  background-color: hsl(359, 100%, 95%);
+  border: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}
