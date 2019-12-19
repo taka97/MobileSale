@@ -25,7 +25,7 @@ function HomePage() {
     },
     {
       img: "imgs/xiaomi-1.jpg",
-      title: "Xiaomi mi alpha 512GB",
+      title: "Xiaomi mi mix alpha 512GB",
       price: "65.000.000₫",
       rate: 3,
       link: "/detail"
@@ -38,9 +38,9 @@ function HomePage() {
       link: "/detail"
     },
     {
-      img: "https://via.placeholder.com/150",
-      title: "Title",
-      price: "100,000vnd",
+      img: "imgs/vsmart-1.png",
+      title: "Vsmart live 64GB",
+      price: "3.790.000₫",
       rate: 3,
       link: "/detail"
     }
@@ -56,7 +56,7 @@ function HomePage() {
         ))}
       </Carousel>
       <div class="boundary">
-        <h3 class="headline">Top sales</h3>
+        <h3 class="headline">Sản phẩm bán chạy</h3>
         <div class="center">
           <ul class="list-item">
             {products.map((value, index) => (
@@ -72,7 +72,7 @@ function HomePage() {
                     <Rate disabled defaultValue={value.rate} className="rate" />
                     <span class="price">{value.price}</span>
                     <Button type="primary" className="card-button">
-                      <Link to={value.link}>View more</Link>
+                      <Link to={value.link}>Xem thêm</Link>
                     </Button>
                   </div>
                 </Card>

@@ -105,30 +105,30 @@ class RegistrationForm extends React.Component {
       <div class="register-container-fluid">
         <div class="register-form-container container">
           <div class="center">
-            <p className="title">REGISTER</p>
+            <p className="title">ĐĂNG KÍ</p>
             <Form
               {...formItemLayout}
               onSubmit={this.handleSubmit}
               className="register-form"
             >
               <Avatar />
-              <Form.Item label="Username">
+              <Form.Item label="Tên đăng nhập">
                 {getFieldDecorator("username", {
                   rules: [
                     {
                       required: true,
-                      message: "Please input your username!",
+                      message: "Mời bạn nhập username",
                       whitespace: true
                     }
                   ]
                 })(<Input />)}
               </Form.Item>
-              <Form.Item label="Password" hasFeedback>
+              <Form.Item label="Mật khẩu" hasFeedback>
                 {getFieldDecorator("password", {
                   rules: [
                     {
                       required: true,
-                      message: "Please input your password!"
+                      message: "Mời bạn nhập mật khẩu"
                     },
                     {
                       validator: this.validateToNextPassword
@@ -136,12 +136,12 @@ class RegistrationForm extends React.Component {
                   ]
                 })(<Input.Password />)}
               </Form.Item>
-              <Form.Item label="Confirm Password" hasFeedback>
+              <Form.Item label="Xác nhận mật khẩu" hasFeedback>
                 {getFieldDecorator("confirm", {
                   rules: [
                     {
                       required: true,
-                      message: "Please confirm your password!"
+                      message: "Mời bạn nhập lại mật khẩu"
                     },
                     {
                       validator: this.compareToFirstPassword
@@ -149,37 +149,37 @@ class RegistrationForm extends React.Component {
                   ]
                 })(<Input.Password onBlur={this.handleConfirmBlur} />)}
               </Form.Item>
-              <Form.Item label="E-mail">
+              <Form.Item label="Email">
                 {getFieldDecorator("email", {
                   rules: [
                     {
                       type: "email",
-                      message: "The input is not valid E-mail!"
+                      message: "Email không đúng định dạng"
                     },
                     {
                       required: true,
-                      message: "Please input your E-mail!"
+                      message: "Mời bạn nhập email"
                     }
                   ]
                 })(<Input />)}
               </Form.Item>
-              <Form.Item label="Full Name">
+              <Form.Item label="Tên đầy đủ">
                 {getFieldDecorator("fullname", {
                   rules: [
                     {
                       required: true,
-                      message: "Please input your full name!",
+                      message: "Mời bạn nhập tên đầy đủ",
                       whitespace: true
                     }
                   ]
                 })(<Input />)}
               </Form.Item>
-              <Form.Item label="Phone Number">
+              <Form.Item label="Số điện thoại">
                 {getFieldDecorator("phone", {
                   rules: [
                     {
                       required: true,
-                      message: "Please input your phone number!"
+                      message: "Mời bạn nhập số điện thoại"
                     }
                   ]
                 })(
@@ -191,7 +191,7 @@ class RegistrationForm extends React.Component {
               </Form.Item>
               <br />
               <Button type="primary" htmlType="submit" className="form-button">
-                Register
+                Đăng kí
               </Button>
             </Form>
           </div>

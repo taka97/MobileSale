@@ -47,34 +47,32 @@ class NormalLoginForm extends React.Component {
       <div class="login-container-fluid">
         <div class="login-form-container container">
           <div class="center">
-            <p className="title">LOGIN</p>
+            <p className="title">ĐĂNG NHẬP</p>
             <Form onSubmit={this.handleSubmit} className="login-form">
               <Form.Item>
                 {getFieldDecorator("username", {
                   rules: [
-                    { required: true, message: "Please input your username!" }
+                    { required: true, message: "Mời bạn nhập tên đăng nhập" }
                   ]
                 })(
                   <Input
                     prefix={
                       <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                     }
-                    placeholder="Username"
+                    placeholder="Tên đăng nhập"
                   />
                 )}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator("password", {
-                  rules: [
-                    { required: true, message: "Please input your Password!" }
-                  ]
+                  rules: [{ required: true, message: "Mời bạn nhập mật khẩu" }]
                 })(
                   <Input
                     prefix={
                       <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
                     }
                     type="password"
-                    placeholder="Password"
+                    placeholder="Mật khẩu"
                   />
                 )}
               </Form.Item>
@@ -82,19 +80,19 @@ class NormalLoginForm extends React.Component {
                 {getFieldDecorator("remember", {
                   valuePropName: "checked",
                   initialValue: true
-                })(<Checkbox>Remember me</Checkbox>)}
+                })(<Checkbox>Ghi nhớ đăng nhập</Checkbox>)}
                 <Link to="/forgot-password" className="login-form-forgot">
-                  Forgot password
+                  Quên mật khẩu
                 </Link>
                 <Button
                   type="primary"
                   htmlType="submit"
                   className="form-button"
                 >
-                  Log in
+                  Đăng nhập
                 </Button>
                 <br />
-                Or <Link to="/register">Register now!</Link>
+                Hoặc <Link to="/register">Đăng kí ngay</Link>
               </Form.Item>
             </Form>
           </div>
