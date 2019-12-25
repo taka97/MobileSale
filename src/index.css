@@ -8,13 +8,13 @@
 }
 
 .container {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.14);
   border-radius: 4px;
   background-color: white;
 }
 
 .title {
-  color: #61dafb;
+  color: #3696ff;
   font-size: 24px;
 }
 
