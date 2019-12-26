@@ -1,72 +1,10 @@
 import React, { useState } from "react";
 import { Card, Button, Tag, Tabs, InputNumber } from "antd";
+import { connect } from "react-redux";
 
 const { TabPane } = Tabs;
 
-const DetailPage = () => {
-  const detail = {
-    title: "iPhone 11 pro max 64GB",
-    imgs: ["imgs/iphone-1.png", "imgs/iphone-2.jfif", "imgs/iphone-3.jfif"],
-    price: "33.990.000₫",
-    short:
-      "Trong năm 2019 thì chiếc smartphone được nhiều người mong muốn sở hữu trên tay và sử dụng nhất không ai khác chính là iPhone 11 Pro Max 64GB tới từ nhà Apple",
-    full: (
-      <div className="read-content">
-        <h3>Camera được cải tiến mạnh mẽ</h3>
-        <p>
-          Chắc chắn lý do lớn nhất mà bạn muốn nâng cấp lên iPhone 11 Pro Max
-          chính là cụm camera mới được Apple nâng cấp rất nhiều.
-        </p>
-        <img
-          src="https://www.thegioididong.com/images/42/200533/iphone-11-pro-max-6.jpg"
-          alt="img"
-          style={{ width: "100%" }}
-        ></img>
-        <p>
-          Lần đầu tiên chúng ta sẽ có một chiếc iPhone với 3 camera ở mặt sau và
-          cả 3 camera này đều có độ phân giải là 12 MP. Chúng ta sẽ có một
-          camera góc thường, một camera góc rộng và một camera tele đáp ứng đầy
-          đủ nhu cầu chụp ảnh hàng ngày của người dùng.
-        </p>
-        <p>
-          Một cải tiến nữa cũng rất đáng chú ý chính là chế độ Night Mode mới sẽ
-          giúp bạn cải thiện rất nhiều chất lượng ảnh chụp đêm trên iPhone.
-        </p>
-        <img
-          src="https://www.thegioididong.com/images/42/200533/iphone-11-pro-max-tgdd10.jpg"
-          alt="img"
-          style={{ width: "100%" }}
-        ></img>
-        <p>
-          Tùy thuộc vào điều kiện môi trường bạn chụp mà iPhone sẽ đưa ra những
-          thông số phù hợp để bạn có thể có cho mình được một bức ảnh ưng ý
-          nhất. Chế độ chân dung không chỉ tốt hơn trong việc lấy nét vào đối
-          tượng muốn chụp, mà còn hoạt động được ở khoảng cách 'bình thường' nhờ
-          sự trợ giúp của cảm biến độ sâu.
-        </p>
-        <h3>Camera trước cũng mang lại sự khác biệt</h3>
-        <p>
-          Không chỉ có camera chính mà camera selfie trên iPhone 11 Pro Max cũng
-          được cải thiện rất nhiều. Đầu tiên chúng ta có thể kể tới là độ phân
-          giải giờ đây đã được nâng lên thành 12 MP thay vì 7 MP như trên thế hệ
-          trước.
-        </p>
-        <img
-          src="https://www.thegioididong.com/images/42/200533/iphone-11-pro-max-19.jpg"
-          alt="img"
-          style={{ width: "100%" }}
-        ></img>
-        <p>
-          Tiếp theo chúng ta sẽ có công nghệ quay video độ phân giải 4K ngay
-          trên camera trước một điều mà những chiếc iPhone trước đây chưa thể
-          làm được. Ngoài ra bạn cũng có thể dùng camera trước để quay video
-          slow motion (quay chậm) giúp bạn có được những video thú vị và vui vẻ
-          với bạn bè.
-        </p>
-      </div>
-    )
-  };
-
+const DetailPage = ({ detail }) => {
   const [bigImg, updateImg] = useState(detail.imgs[0]);
   const changeImg = e => {
     updateImg(e.target.src);
@@ -131,4 +69,9 @@ const DetailPage = () => {
   );
 };
 
-export default DetailPage;
+export default connect(
+  state => ({
+    detail: state.products.detail
+  }),
+  null
+)(DetailPage);
