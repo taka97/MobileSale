@@ -14,7 +14,9 @@ import Navbar from "../components/Navbar";
 import MyFooter from "../components/Footer";
 import CategoryPage from "../containers/CategoryPage";
 import DetailPage from "../containers/DetailPage";
-import "./style.css";
+import AdminPage from "../containers/AdminPage";
+import "antd/dist/antd.css";
+import "../style.css";
 
 const { Header, Content, Footer } = Layout;
 
@@ -33,6 +35,7 @@ const Root = () => (
             <Route path="/payment" component={PaymentPage} />
             <Route path="/category" component={CategoryPage} />
             <Route path="/detail" component={DetailPage} />
+            <Route path="/admin" component={AdminPage} />
             <Route path="/" component={HomePage} />
           </Switch>
         </Content>

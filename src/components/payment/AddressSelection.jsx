@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import "antd/dist/antd.css";
 import { Descriptions, Card, Button } from "antd";
 import { Link } from "react-router-dom";
 
