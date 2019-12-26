@@ -61,7 +61,7 @@ const columns = [
     dataIndex: "index",
     key: "none",
     render: index => (
-      <Button type="danger" onClick={showConfirm} className="delete">
+      <Button type="danger" onClick={showConfirm}>
         Xóa
       </Button>
     )
@@ -96,12 +96,7 @@ const data = [
 ];
 
 const CartList = () => (
-  <Table
-    columns={columns}
-    dataSource={data}
-    pagination={false}
-    className="container"
-  />
+  <Table columns={columns} dataSource={data} className="container" />
 );
 
 export default CartList;

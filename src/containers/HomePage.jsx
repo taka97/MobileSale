@@ -3,81 +3,85 @@ import { Carousel, Card, Rate, Button } from "antd";
 import { Link } from "react-router-dom";
 
 function HomePage() {
-  const carouselImgs = [
-    "imgs/carousel-img-1.jpg",
-    "imgs/carousel-img-2.jpg",
-    "imgs/carousel-img-3.jpg"
-  ];
-  const products = [
-    {
-      img: "imgs/iphone-1.png",
-      title: "iPhone 11 pro max 64GB",
-      price: "33.990.000₫",
-      rate: 3,
-      link: "/detail"
-    },
-    {
-      img: "imgs/samsung-1.png",
-      title: "Samsung Galaxy Fold 512GB",
-      price: "50.000.000₫",
-      rate: 3,
-      link: "/detail"
-    },
-    {
-      img: "imgs/xiaomi-1.jpg",
-      title: "Xiaomi mi mix alpha 512GB",
-      price: "65.000.000₫",
-      rate: 3,
-      link: "/detail"
-    },
-    {
-      img: "imgs/oppo-1.png",
-      title: "Oppo reno 2 256GB",
-      price: "14.990.000₫",
-      rate: 3,
-      link: "/detail"
-    },
-    {
-      img: "imgs/vsmart-1.png",
-      title: "Vsmart live 64GB",
-      price: "3.790.000₫",
-      rate: 3,
-      link: "/detail"
-    }
-  ];
-
   return (
     <div>
-      <Carousel autoplay className="my-carousel">
-        {carouselImgs.map((value, index) => (
-          <div>
-            <img src={value} alt={index} key={index} />
-          </div>
-        ))}
+      <Carousel autoplay style={{ maxWidth: 900, margin: "auto" }}>
+        <div>
+          <img src="imgs/carousel-img-2.jpg" alt="carousel-2" width="100%" />
+        </div>
+        <div>
+          <img src="imgs/carousel-img-3.jfif" alt="carousel-3" width="100%" />
+        </div>
+        <div>
+          <img src="imgs/carousel-img-4.webp" alt="carousel-4" width="100%" />
+        </div>
       </Carousel>
       <div class="boundary">
-        <h3 class="headline">Sản phẩm bán chạy</h3>
+        <h3 class="headline">Top sales</h3>
         <div class="center">
           <ul class="list-item">
-            {products.map((value, index) => (
-              <li key={index}>
-                <Card className="big-card container card">
-                  <div class="img-container">
-                    <img src={value.img} alt="img" />
-                  </div>
-                  <div class="content">
-                    <Link to={value.link} className="card-title">
-                      {value.title}
-                    </Link>
-                    <Rate disabled defaultValue={value.rate} className="rate" />
-                    <span class="price">{value.price}</span>
-                    <Button type="primary" className="card-button">
-                      <Link to={value.link}>Xem thêm</Link>
-                    </Button>
-                  </div>
-                </Card>
-              </li>
-            ))}
+            <li>
+              <Card className="big-card container card">
+                <div class="img-container">
+                  <img src="https://via.placeholder.com/150" alt="img" />
+                </div>
+                <div class="content">
+                  <a class="card-title" href="/detail">
+                    Title
+                  </a>
+                  <Rate disabled defaultValue={2} className="rate" />
+                  <span class="price">100,000vnd</span>
+                  <Button className="card-button">
+                    <Link to="/detail">View more</Link>
+                  </Button>
+                </div>
+              </Card>
+            </li>
+            <li>
+              <Card className="big-card container card">
+                <div class="img-container">
+                  <img src="https://via.placeholder.com/150" alt="img" />
+                </div>
+                <div class="content">
+                  <a class="card-title" href="/detail">
+                    Title
+                  </a>
+                  <Rate disabled defaultValue={2} className="rate" />
+                  <span class="price">100,000vnd</span>
+                  <Button className="card-button">View more</Button>
+                </div>
+              </Card>
+            </li>
+            <li>
+              <Card className="big-card container card">
+                <div class="img-container">
+                  <img src="https://via.placeholder.com/150" alt="img" />
+                </div>
+                <div class="content">
+                  <a class="card-title" href="/detail">
+                    Title
+                  </a>
+                  <Rate disabled defaultValue={2} className="rate" />
+                  <span class="price">100,000vnd</span>
+                  <Button className="card-button">View more</Button>
+                </div>
+              </Card>
+            </li>
+            <li>
+              <Card className="big-card container card">
+                <div class="img-container">
+                  <img src="https://via.placeholder.com/150" alt="img" />
+                </div>
+                <div class="content">
+                  <a class="card-title" href="/detail">
+                    Title
+                  </a>
+                  <Rate disabled defaultValue={2} className="rate" />
+                  <span class="price">100,000vnd</span>
+                  <Button className="card-button">View more</Button>
+                </div>
+              </Card>
+            </li>
           </ul>
         </div>
       </div>

@@ -21,28 +21,28 @@ class Navbar extends React.Component {
     if (username && username !== undefined) {
       login_logout = (
         <Menu.Item key="logout">
-          <Button onClick={actLogout}>Đăng xuất</Button>
+          <Button onClick={actLogout}>Logout</Button>
         </Menu.Item>
       );
       cart = (
         <Menu.Item key="cart">
-          <Link to="/cart">Giỏ hàng</Link>
+          <Link to="/cart">Cart</Link>
         </Menu.Item>
       );
     } else {
       login_logout = (
         <Menu.Item key="login">
-          <Link to="/login">Đăng nhập</Link>
+          <Link to="/login">Login</Link>
         </Menu.Item>
       );
       register = (
         <Menu.Item key="register">
-          <Link to="/register">Đăng kí</Link>
+          <Link to="/register">Register</Link>
         </Menu.Item>
       );
     }
     return (
-      <div className="navbar">
+      <div class="navbar">
         {/* First floor */}
         <div>
           <Menu
@@ -51,10 +51,10 @@ class Navbar extends React.Component {
             className="float-right transparent"
           >
             <Menu.Item key="login">
-              <Link to="/login">Đăng nhập</Link>
+              <Link to="/login">Login</Link>
             </Menu.Item>
             <Menu.Item key="register">
-              <Link to="/register">Đăng kí</Link>
+              <Link to="/register">Register</Link>
             </Menu.Item>
             <Menu.Item key="payment">
               <Link to="/payment">Thanh toán (temp)</Link>
@@ -63,7 +63,7 @@ class Navbar extends React.Component {
         </div>
 
         {/* Second floor */}
-        <div className="second-floor">
+        <div class="second-floor">
           <Menu
             id="myHeader"
             className="category transparent"
@@ -75,7 +75,7 @@ class Navbar extends React.Component {
               title={
                 <span className="submenu-title-wrapper">
                   <Icon type="menu" />
-                  <span className="auto-hide">Danh mục</span>
+                  <span class="auto-hide">All category</span>
                 </span>
               }
             >
