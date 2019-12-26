@@ -10,10 +10,6 @@ import {
   actCallbackLink
 } from "../actions/Auth";
 
-import "antd/dist/antd.css";
-import "../index.css";
-import "./style.css";
-
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();

@@ -1,6 +1,4 @@
 import React from "react";
-import "antd/dist/antd.css";
-import "./style.css";
 import { connect } from "react-redux";
 import { Menu, Icon, Input } from "antd";
 import { Link } from "react-router-dom";
@@ -58,6 +56,9 @@ class Navbar extends React.Component {
             </Menu.Item>
             <Menu.Item key="payment">
               <Link to="/payment">Thanh toán (temp)</Link>
+            </Menu.Item>
+            <Menu.Item key="admin">
+              <Link to="/admin">Admin (temp)</Link>
             </Menu.Item>
           </Menu>
         </div>
