@@ -15,6 +15,7 @@ import MyFooter from "../components/Footer";
 import CategoryPage from "../containers/CategoryPage";
 import DetailPage from "../containers/DetailPage";
 import AdminPage from "../containers/AdminPage";
+import ScrollToTop from "../components/ScrollToTop";
 import "antd/dist/antd.css";
 import "../style.css";
 
@@ -23,6 +24,7 @@ const { Header, Content, Footer } = Layout;
 const Root = () => (
   <Provider store={store}>
     <BrowserRouter>
+      <ScrollToTop></ScrollToTop>
       <Layout>
         <Header className="transparent">
           <Navbar></Navbar>

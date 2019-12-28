@@ -25,7 +25,7 @@ const Detail = () => {
           <Input placeholder="Full name" />
           <Input type="email" placeholder="Email" />
           <Input placeholder="Phone" />
-          <Input placeholder="ID card" />
+          <Input placeholder="ID" />
           <Input placeholder="Location" />
         </div>
         <div className={`btn-group ${adjusted ? "" : "hide"}`}>
