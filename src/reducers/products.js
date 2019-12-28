@@ -5,8 +5,8 @@ const initState = {
     {
       imgs: ["imgs/iphone-1.png", "imgs/iphone-2.jfif", "imgs/iphone-3.jfif"],
       img: "imgs/iphone-1.png",
-      title: "iPhone 11 pro max 64GB",
-      price: "33.990.000₫",
+      name: "iPhone 11 pro max 64GB",
+      price: 33990000,
       short:
         "Trong năm 2019 thì chiếc smartphone được nhiều người mong muốn sở hữu trên tay và sử dụng nhất không ai khác chính là iPhone 11 Pro Max 64GB tới từ nhà Apple",
       full: (
@@ -70,8 +70,8 @@ const initState = {
     {
       imgs: ["imgs/samsung-1.png"],
       img: "imgs/samsung-1.png",
-      title: "Samsung Galaxy Fold 512GB",
-      price: "50.000.000₫",
+      name: "Samsung Galaxy Fold 512GB",
+      price: 50000000,
       short:
         "Chiếc điện thoại màn hình gập đầu tiên của Samsung, đánh dấu sự tiên phong cho một thế hệ mới",
       full: "Đang cập nhật",
@@ -81,8 +81,8 @@ const initState = {
     {
       imgs: ["imgs/xiaomi-1.jpg"],
       img: "imgs/xiaomi-1.jpg",
-      title: "Xiaomi mi mix alpha 512GB",
-      price: "65.000.000₫",
+      name: "Xiaomi mi mix alpha 512GB",
+      price: 65000000,
       short:
         "Chiếc điện thoại với màn hình bao trọn cả 2 mặt của Xiaomi, đánh dấu sự đột phát mới",
       full: "Đang cập nhật",
@@ -92,8 +92,8 @@ const initState = {
     {
       imgs: ["imgs/oppo-1.png"],
       img: "imgs/oppo-1.png",
-      title: "Oppo reno 2 256GB",
-      price: "14.990.000₫",
+      name: "Oppo reno 2 256GB",
+      price: 14990000,
       short:
         "Sự mới lạ chưa bao giờ là hết đối với Oppo, với cơ chế ẩn hiện camera ấn tượng",
       full: "Đang cập nhật",
@@ -103,8 +103,8 @@ const initState = {
     {
       imgs: ["imgs/vsmart-1.png"],
       img: "imgs/vsmart-1.png",
-      title: "Vsmart live 64GB",
-      price: "3.790.000₫",
+      name: "Vsmart live 64GB",
+      price: 3790000,
       short:
         "Chiếc điện thoại tiên phong chiếm lĩnh thị trường Việt Nam của nhà làm Vsmart",
       full: "Đang cập nhật",

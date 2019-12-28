@@ -2,6 +2,7 @@ import React from "react";
 import { Carousel, Card, Rate, Button } from "antd";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { numberWithCommas } from "../utils/helper";
 
 import { getList, getDetail } from "../actions/products";
 
@@ -37,10 +38,12 @@ const HomePage = ({ products, getList, getDetail }) => {
                       onClick={() => getDetail(value.key)}
                       className="card-title"
                     >
-                      {value.title}
+                      {value.name}
                     </Link>
                     <Rate disabled defaultValue={value.rate} className="rate" />
-                    <span className="price">{value.price}</span>
+                    <span className="price">
+                      {numberWithCommas(value.price)}₫
+                    </span>
                     <Button type="primary" className="card-button">
                       <Link to="/detail" onClick={() => getDetail(value.key)}>
                         Xem thêm

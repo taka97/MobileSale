@@ -5,7 +5,6 @@ import { Steps } from "antd";
 const { Step } = Steps;
 
 const Process = ({ i }) => {
-  console.log(i);
   return (
     <Steps current={i} className="container process">
       <Step title="Chọn địa chỉ thanh toán" />
