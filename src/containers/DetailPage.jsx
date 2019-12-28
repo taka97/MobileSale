@@ -22,8 +22,7 @@ const DetailPage = ({ detail, add }) => {
       name: detail.name,
       price: detail.price,
       key: detail.key,
-      number,
-      amount: number * detail.price
+      number
     };
     add(product);
   };

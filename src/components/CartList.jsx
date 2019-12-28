@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { numberWithCommas } from "../utils/helper";
 
-import { Table, InputNumber, Modal, Button } from "antd";
+import { InputNumber, Modal, Button } from "antd";
+import { adjust, remove } from "../actions/cart";
 
 // modal
 const { confirm } = Modal;
 
-const CartList = ({ list }) => {
+const CartList = ({ list, adjust, remove }) => {
+  const [total, updateTotal] = useState(0);
   const showConfirm = e => {
     confirm({
       title: "Do you want to delete these items?",
@@ -23,75 +25,138 @@ const CartList = ({ list }) => {
     });
   };
 
-  const updateAmount = e => {
-    console.log(e);
+  const updateAmount = (index, number) => {
+    adjust(index, number);
+    sum(list);
   };
 
-  const columns = [
-    {
-      title: "#",
-      dataIndex: "index",
-      key: "index"
-    },
-    {
-      title: "Tên sản phẩm",
-      dataIndex: "name",
-      key: "name"
-    },
-    {
-      title: "Đơn giá",
-      dataIndex: "price",
-      key: "price"
-    },
-    {
-      title: "Số lượng",
-      dataIndex: "number",
-      key: "number",
-      render: number => (
-        <InputNumber
-          min={1}
-          max={10}
-          defaultValue={number}
-          onChange={e => updateAmount(e)}
-        />
-      )
-    },
-    {
-      title: "Tổng cộng",
-      key: "amount",
-      dataIndex: "amount",
-      render: amount => `${numberWithCommas(amount)}₫`
-    },
-    {
-      title: "Xử lí",
-      dataIndex: "index",
-      key: "none",
-      render: index => (
-        <Button type="danger" onClick={showConfirm} className="delete">
-          Xóa
-        </Button>
-      )
-    }
-  ];
+  const sum = list => {
+    let total = 0;
+    list.forEach(item => (total += item.price * item.number));
+    updateTotal(total);
+  };
+
+  if (total === 0 && list.length != 0) {
+    sum(list);
+  }
 
   return (
-    <Table
-      columns={columns}
-      dataSource={list}
-      pagination={false}
-      className="container"
-      onRow={(record, rowIndex) => {
-        return {
-          onClick: e => {
-            let row =
-              e.target.parentElement.parentElement.parentElement.parentElement
-                .parentElement.parentElement;
-            let index = row.getAttribute("data-row-key") - 1;
-            console.log(list[index]);
-          }
-        };
-      }}
-    />
+    <div class="ant-table-wrapper container">
+      <div class="ant-spin-nested-loading">
+        <div class="ant-spin-container">
+          <div class="ant-table ant-table-default ant-table-scroll-position-left">
+            <div class="ant-table-content">
+              <div class="ant-table-body">
+                <table class="">
+                  <thead class="ant-table-thead">
+                    <tr>
+                      <th class="">
+                        <span class="ant-table-header-column">
+                          <div>
+                            <span class="ant-table-column-title">#</span>
+                            <span class="ant-table-column-sorter"></span>
+                          </div>
+                        </span>
+                      </th>
+                      <th class="">
+                        <span class="ant-table-header-column">
+                          <div>
+                            <span class="ant-table-column-title">
+                              Tên sản phẩm
+                            </span>
+                            <span class="ant-table-column-sorter"></span>
+                          </div>
+                        </span>
+                      </th>
+                      <th class="">
+                        <span class="ant-table-header-column">
+                          <div>
+                            <span class="ant-table-column-title">Đơn giá</span>
+                            <span class="ant-table-column-sorter"></span>
+                          </div>
+                        </span>
+                      </th>
+                      <th class="">
+                        <span class="ant-table-header-column">
+                          <div>
+                            <span class="ant-table-column-title">Số lượng</span>
+                            <span class="ant-table-column-sorter"></span>
+                          </div>
+                        </span>
+                      </th>
+                      <th class="">
+                        <span class="ant-table-header-column">
+                          <div>
+                            <span class="ant-table-column-title">
+                              Tổng cộng
+                            </span>
+                            <span class="ant-table-column-sorter"></span>
+                          </div>
+                        </span>
+                      </th>
+                      <th class="">
+                        <span class="ant-table-header-column">
+                          <div>
+                            <span class="ant-table-column-title">Xử lí</span>
+                            <span class="ant-table-column-sorter"></span>
+                          </div>
+                        </span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="ant-table-tbody">
+                    {list.map((value, index) => (
+                      <tr
+                        class="ant-table-row ant-table-row-level-0"
+                        data-row-key={index}
+                      >
+                        <td class="">{index}</td>
+                        <td class="">{value.name}</td>
+                        <td class="">{numberWithCommas(value.price)}₫</td>
+                        <td class="">
+                          <InputNumber
+                            min={1}
+                            max={10}
+                            defaultValue={value.number}
+                            onChange={number => updateAmount(index, number)}
+                          />
+                        </td>
+                        <td class="">
+                          {numberWithCommas(value.number * value.price)}₫
+                        </td>
+                        <td class="">
+                          <button
+                            type="button"
+                            class="ant-btn delete ant-btn-danger"
+                            onClick={() => {
+                              remove(index);
+                              sum(list);
+                            }}
+                          >
+                            <span>Xóa</span>
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                    <tr
+                      class="ant-table-row ant-table-row-level-0"
+                      data-row-key="sum"
+                    >
+                      <td class=""></td>
+                      <td class=""></td>
+                      <td class=""></td>
+                      <td class="">Total</td>
+                      <td class="">{numberWithCommas(total)}₫</td>
+                      <td class=""></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -99,5 +164,5 @@ export default connect(
   state => ({
     list: state.cart.list
   }),
-  null
+  { adjust, remove }
 )(CartList);

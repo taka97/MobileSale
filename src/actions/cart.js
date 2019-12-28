@@ -7,12 +7,12 @@ export const add = product => ({
   payload: product
 });
 
-export const remove = key => ({
+export const remove = index => ({
   type: "REMOVE",
-  payload: key
+  payload: index
 });
 
-export const adjust = (key, number) => ({
+export const adjust = (index, number) => ({
   type: "ADJUST",
-  payload: { key, number }
+  payload: { index, number }
 });
