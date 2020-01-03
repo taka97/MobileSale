@@ -1,9 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 import CartList from "../components/CartList";
 import { Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
-const CartPage = () => {
+const CartPage = ({ userId }) => {
+  if (userId === null || userId === undefined) {
+    return <Redirect to="/login"></Redirect>;
+  }
   return (
     <div className="boundary">
       <Button type="primary" className="pay-btn">
@@ -14,4 +18,7 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
+export default connect(
+  state => ({ userId: state.auth.userId }),
+  null
+)(CartPage);

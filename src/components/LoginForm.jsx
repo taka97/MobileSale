@@ -5,7 +5,7 @@ import { Redirect, Link } from "react-router-dom";
 
 import {
   actLoginRequest,
-  actGetUser,
+  actGetLocalUser,
   actLogout,
   actCallbackLink
 } from "../actions/Auth";
@@ -15,7 +15,6 @@ class NormalLoginForm extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
         const { actLoginRequest } = this.props;
         actLoginRequest(values);
       }
@@ -23,15 +22,15 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    const { username, err, actGetUser, callbackLink } = this.props;
+    const { userId, code, actGetLocalUser, callbackLink } = this.props;
     const { getFieldDecorator } = this.props.form;
-    actGetUser();
+    actGetLocalUser();
 
-    if (username && username !== undefined) {
+    if (userId) {
       if (callbackLink) return <Redirect to={callbackLink} />;
       return <Redirect to="/" />;
     }
-    if (err === 400) {
+    if (code === 400) {
       const { info } = Modal;
       info({
         title: "Thông báo",
@@ -55,7 +54,7 @@ class NormalLoginForm extends React.Component {
                     prefix={
                       <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
                     }
-                    placeholder="Tên đăng nhập"
+                    placeholder="Tên đăng nhập hoặc email"
                   />
                 )}
               </Form.Item>
@@ -99,21 +98,16 @@ class NormalLoginForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  username: state.auth.username,
-  usertoken: state.auth.usertoken,
-  email: state.auth.email,
-  phone: state.auth.phone,
-  fullname: state.auth.fullname,
-  avatar: state.auth.avatar,
-  stratery: state.auth.stratery,
+  userId: state.auth.userId,
+  accessToken: state.auth.accessToken,
 
-  err: state.auth.err,
+  code: state.auth.code,
   callbackLink: state.auth.callbackLink
 });
 
 const mapDispatchToProps = dispatch => ({
   actLoginRequest: user => dispatch(actLoginRequest(user)),
-  actGetUser: () => dispatch(actGetUser()),
+  actGetLocalUser: () => dispatch(actGetLocalUser()),
   actLogout: () => dispatch(actLogout()),
   actCallbackLink: link => dispatch(actCallbackLink(link))
 });

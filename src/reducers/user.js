@@ -12,6 +12,8 @@ const initState = {
 
 export default function user(state = initState, action) {
   switch (action.type) {
+    case "REQUEST_LOGIN":
+      return {};
     case "GET_GENERAL_INFO":
       return {
         ...state,
@@ -29,6 +31,14 @@ export default function user(state = initState, action) {
         ...state,
         paymentMethod: action.payload
       };
+    case "ADD_ORDER": {
+      let { order } = state;
+      order.push(action.payload);
+      return {
+        ...state,
+        order
+      };
+    }
     default:
       return state;
   }

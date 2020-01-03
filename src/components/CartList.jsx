@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { numberWithCommas } from "../utils/helper";
 
-import { InputNumber, Modal, Button } from "antd";
+import { InputNumber, Modal } from "antd";
 import { adjust, remove } from "../actions/cart";
 
 // modal
@@ -35,7 +35,7 @@ const CartList = ({ list, adjust, remove }) => {
     updateTotal(total);
   };
 
-  if (total === 0 && list.length != 0) {
+  if (total === 0 && list.length !== 0) {
     sum(list);
   }
 

@@ -13,3 +13,8 @@ export const updatePaymentMethod = method => ({
   type: "UPDATE_PAYMENT_METHOD",
   payload: method
 });
+
+export const addOrder = (userInfo, products) => ({
+  type: "ADD_ORDER",
+  payload: { userInfo, products }
+});

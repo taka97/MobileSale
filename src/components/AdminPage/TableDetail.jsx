@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Table, Card, Input, Button } from "antd";
+import { Table, Button } from "antd";
 
 const columns = [
   {

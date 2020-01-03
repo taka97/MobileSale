@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, Input, Select, Button, Modal } from "antd";
-import Avatar from "./Avatar";
+import { Form, Input, Select, Button, Modal, DatePicker } from "antd";
 import { callApiRegister } from "../utils/apiCaller";
 
 const { Option } = Select;
@@ -8,24 +7,28 @@ const { Option } = Select;
 class RegistrationForm extends React.Component {
   state = {
     confirmDirty: false,
-    autoCompleteResult: []
+    autoCompleteResult: [],
+    birthdate: ""
+  };
+  onChange = (date, dateString) => {
+    this.setState({ birthdate: dateString });
   };
 
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFieldsAndScroll((err, values) => {
+      values.birthDate = this.state.birthdate;
       if (!err) {
-        console.log("Received values of form: ", values);
         return callApiRegister(values)
           .then(() => {
             const { history } = this.props;
             history.push("/login");
           })
-          .catch(() => {
+          .catch(error => {
             const { info } = Modal;
             info({
-              title: "Thông báo",
-              content: `Đăng ký thất bại`
+              title: "Đăng ký thất bại",
+              content: error.response.data.message
             });
           });
       }
@@ -41,7 +44,7 @@ class RegistrationForm extends React.Component {
   compareToFirstPassword = (rule, value, callback) => {
     const { form } = this.props;
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback("Nhập lại mật khẩu không đúng!");
     } else {
       callback();
     }
@@ -67,6 +70,10 @@ class RegistrationForm extends React.Component {
     this.setState({ autoCompleteResult });
   };
 
+  handleChange = value => {
+    console.log(`selected ${value}`);
+  };
+
   render() {
     const { getFieldDecorator } = this.props.form;
 
@@ -80,18 +87,7 @@ class RegistrationForm extends React.Component {
         sm: { span: 16 }
       }
     };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0
-        },
-        sm: {
-          span: 16,
-          offset: 8
-        }
-      }
-    };
+
     const prefixSelector = getFieldDecorator("prefix", {
       initialValue: "84"
     })(
@@ -101,16 +97,15 @@ class RegistrationForm extends React.Component {
     );
 
     return (
-      <div class="register-container-fluid">
-        <div class="register-form-container container">
-          <div class="center">
+      <div className="register-container-fluid">
+        <div className="register-form-container container">
+          <div className="center">
             <p className="title">ĐĂNG KÍ</p>
             <Form
               {...formItemLayout}
               onSubmit={this.handleSubmit}
               className="register-form"
             >
-              <Avatar />
               <Form.Item label="Tên đăng nhập">
                 {getFieldDecorator("username", {
                   rules: [
@@ -121,6 +116,22 @@ class RegistrationForm extends React.Component {
                     }
                   ]
                 })(<Input />)}
+              </Form.Item>
+              <Form.Item label="Giới tính" style={{ textAlign: "left" }}>
+                {getFieldDecorator("sex", {
+                  rules: [
+                    {
+                      required: true,
+                      message: "Mời bạn chọn giới tính",
+                      whitespace: true
+                    }
+                  ]
+                })(
+                  <Select onChange={this.handleChange} style={{ width: 100 }}>
+                    <Option value="male">Male</Option>
+                    <Option value="female">Female</Option>
+                  </Select>
+                )}
               </Form.Item>
               <Form.Item label="Mật khẩu" hasFeedback>
                 {getFieldDecorator("password", {
@@ -188,7 +199,27 @@ class RegistrationForm extends React.Component {
                   />
                 )}
               </Form.Item>
-              <br />
+              <Form.Item label="Ngày sinh" style={{ textAlign: "left" }}>
+                {getFieldDecorator("birthDate", {
+                  rules: [
+                    {
+                      required: true,
+                      message: "Mời bạn chọn ngày sinh"
+                    }
+                  ]
+                })(<DatePicker onChange={this.onChange} />)}
+              </Form.Item>
+              <Form.Item label="Địa chỉ">
+                {getFieldDecorator("address", {
+                  rules: [
+                    {
+                      required: true,
+                      message: "Mời bạn nhập địa chỉ",
+                      whitespace: true
+                    }
+                  ]
+                })(<Input />)}
+              </Form.Item>
               <Button type="primary" htmlType="submit" className="form-button">
                 Đăng kí
               </Button>

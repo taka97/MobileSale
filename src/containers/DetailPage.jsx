@@ -28,17 +28,17 @@ const DetailPage = ({ detail, add }) => {
   };
 
   return (
-    <div class="boundary" style={{ backgroundColor: "transparent" }}>
-      <div class="short-detail">
+    <div className="boundary" style={{ backgroundColor: "transparent" }}>
+      <div className="short-detail">
         <Card
           className="big-card container card"
           style={{ height: "auto", float: "left" }}
         >
-          <div class="img-container">
+          <div className="img-container">
             <img src={bigImg} alt="img" />
           </div>
-          <div class="content">
-            <ul class="img-group">
+          <div className="content">
+            <ul className="img-group">
               {detail.imgs.map((value, index) => (
                 <li onClick={changeImg}>
                   <img src={value} alt="img" key={index} />
@@ -47,10 +47,10 @@ const DetailPage = ({ detail, add }) => {
             </ul>
           </div>
         </Card>
-        <div class="summary-detail container">
+        <div className="summary-detail container">
           <div style={{ position: "relative" }}>
             <h3 style={{ fontSize: 24 }}>{detail.title}</h3>
-            <span class="price">{numberWithCommas(detail.price)}₫</span>
+            <span className="price">{numberWithCommas(detail.price)}₫</span>
             <p style={{ marginTop: 12 }}>
               <b>Review ngắn</b>
               <br />
@@ -58,10 +58,10 @@ const DetailPage = ({ detail, add }) => {
             </p>
             <div>
               <span style={{ marginRight: 12 }}>Màu sắc</span>
-              <Tag color="#f50">#f50</Tag>
-              <Tag color="#2db7f5">#2db7f5</Tag>
-              <Tag color="#87d068">#87d068</Tag>
-              <Tag color="#108ee9">#108ee9</Tag>
+              <Tag color="#f50">Đỏ</Tag>
+              <Tag color="#2db7f5">Cyan</Tag>
+              <Tag color="#87d068">Green</Tag>
+              <Tag color="#108ee9">Blue</Tag>
             </div>
             <div style={{ marginTop: 24 }}>
               <InputNumber
@@ -81,7 +81,7 @@ const DetailPage = ({ detail, add }) => {
           </div>
         </div>
       </div>
-      <div class="container" style={{ marginTop: 24, padding: 24 }}>
+      <div className="container" style={{ marginTop: 24, padding: 24 }}>
         <Tabs defaultActiveKey="1">
           <TabPane tab="Chi tiết" key="1">
             <div>{detail.full}</div>

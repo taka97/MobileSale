@@ -4,14 +4,19 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { numberWithCommas } from "../utils/helper";
 
-import { getList, getDetail } from "../actions/products";
+import { getDetail } from "../actions/products";
 
-const HomePage = ({ products, getList, getDetail }) => {
+const HomePage = ({ products, categories, getList, getDetail }) => {
   const carouselImgs = [
     "imgs/carousel-img-1.jpg",
     "imgs/carousel-img-2.jpg",
     "imgs/carousel-img-3.jpg"
   ];
+
+  // wait to get categories first
+  // if (products.length === 0 && categories.length >= 0) {
+  //   getList();
+  // }
 
   return (
     <div>
@@ -62,7 +67,8 @@ const HomePage = ({ products, getList, getDetail }) => {
 
 export default connect(
   state => ({
-    products: state.products.list
+    products: state.products.list,
+    categories: state.products.categories
   }),
-  { getList, getDetail }
+  { getDetail }
 )(HomePage);

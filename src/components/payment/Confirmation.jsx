@@ -5,8 +5,17 @@ import { Link } from "react-router-dom";
 
 import { incStep, decStep } from "../../actions/step";
 import { numberWithCommas } from "../../utils/helper";
+import { removeAll } from "../../actions/cart";
+import { addOrder } from "../../actions/user";
 
-const Confirmation = ({ incStep, decStep, userInfo, products }) => {
+const Confirmation = ({
+  incStep,
+  decStep,
+  userInfo,
+  products,
+  removeAll,
+  addOrder
+}) => {
   const total_pre = products => {
     let total = 0;
     products.forEach(item => (total += item.price * item.number));
@@ -101,7 +110,15 @@ const Confirmation = ({ incStep, decStep, userInfo, products }) => {
           <Divider />
           <p className="bold number">{numberWithCommas(shipFee + total)}₫</p>
           <Link to="/payment/complete">
-            <Button type="primary" className="btn-confirm" onClick={next}>
+            <Button
+              type="primary"
+              className="btn-confirm"
+              onClick={() => {
+                addOrder(userInfo, products);
+                removeAll();
+                next();
+              }}
+            >
               Xác nhận
             </Button>
           </Link>
@@ -128,4 +145,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { incStep, decStep })(Confirmation);
+export default connect(mapStateToProps, {
+  incStep,
+  decStep,
+  removeAll,
+  addOrder
+})(Confirmation);

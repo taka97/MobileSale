@@ -471,6 +471,9 @@
   font-size: 16px;
   color: black;
   display: block;
+  white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 .card .rate {
   margin-top: 5px;
