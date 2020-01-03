@@ -113,7 +113,101 @@ const initState = {
       price: 3790000,
       short:
         "Chiếc điện thoại tiên phong chiếm lĩnh thị trường Việt Nam của nhà làm Vsmart",
-      full: "Đang cập nhật",
+      full: (
+        <div className="read-content">
+          <h2>
+            Vsmart Live là một chiếc smartphone với rất nhiều ưu điểm tới từ
+            <a
+              href="https://www.thegioididong.com/dtdd-vsmart"
+              target="_blank"
+              title="Tham khảo giá điện thoại smartphone Vsmart chính hãng"
+            >
+              Vsmart
+            </a>
+            và hứa hẹn sẽ làm thúc đẩy doanh số của hãng smartphone Việt này lên
+            một tầm cao mới.
+          </h2>
+          <h3>Mẫu smartphone mạnh mẽ nhất từ trước đến nay của Vsmart</h3>
+          <p>
+            Vsmart Live sẽ là một sản phẩm rất đáng chú ý ở phân khúc tầm trung
+            với con chip Snapdragon 675 kết hợp cùng 4 GB RAM và 64 GB bộ nhớ
+            trong.
+          </p>
+          <p>
+            <img
+              alt="Điện thoại smartphone Vsmart Live | Giao diện Android"
+              src="https://cdn.tgdd.vn/Products/Images/42/208847/vsmart-live-tgdd-1.jpg"
+              class="lazy"
+              title="Điện thoại smartphone Vsmart Live | Giao diện Android"
+            />
+          </p>
+          <p>
+            Với những trang bị như vậy thì đây chính là chiếc smartphone có hiệu
+            năng mạnh mẽ nhất từ trước tới nay mà Vsmart từng sản xuất.
+          </p>
+          <p>
+            <img
+              alt="Điện thoại smartphone Vsmart Live | Điểm hiệu năng Antutu"
+              src="https://cdn.tgdd.vn/Products/Images/42/208847/vsmart-live-tgdd-2-1.jpg"
+              class="lazy"
+              title="Điện thoại smartphone Vsmart Live | Điểm hiệu năng Antutu"
+            />
+          </p>
+          <p>
+            Bạn cũng có thể thoải mái sử dụng những ứng dụng nặng hiện nay mà
+            máy vẫn hoạt động khá mượt mà và ổn định.
+          </p>
+          <p>
+            Giao diện của máy cũng khá đơn giản và dễ sử dụng giúp người dùng dễ
+            dàng làm quen ngay từ khi cầm máy.
+          </p>
+          <h3>Smartphone Vsmart đầu tiên có vân tay dưới màn hình</h3>
+          <p>
+            Khá đáng khen cho hãng smartphone Việt khi tích hợp cho chiếc máy
+            tầm trung của mình cảm biến vân tay dưới màn hình.
+          </p>
+          <p>
+            <a
+              class="preventdefault"
+              href="https://www.thegioididong.com/images/42/208847/vsmart-live-tgdd-8.jpg"
+              onclick="return false;"
+            >
+              <img
+                alt="Điện thoại smartphone Vsmart Live | Vân tay dưới màn hình"
+                class="lazy"
+                src="https://cdn.tgdd.vn/Products/Images/42/208847/vsmart-live-tgdd-8.jpg"
+                title="Điện thoại smartphone Vsmart Live | Vân tay dưới màn hình"
+              />
+            </a>
+          </p>
+          <p>
+            Đây là công nghệ tiên tiến hiện nay và vốn dĩ chỉ xuất hiện trên
+            những chiếc máy đắt tiền.
+          </p>
+          <p>
+            Người dùng sẽ không phải hi sinh đi bất cứ bộ phận nào trên máy mà
+            vẫn có thể sử dụng công nghệ cảm biến vân tay đặt phía trước như
+            truyền thống.
+          </p>
+          <h3>Dung lượng pin thoải mái sử dụng</h3>
+          <p>
+            Một điểm đáng khen khác trên chiếc Vsmart Live chính là máy sở hữu
+            cho mình viên pin có dung lượng khủng lên tới 4000 mAh.
+          </p>
+          <p>
+            <img
+              alt="Điện thoại smartphone Vsmart Live | Trải nghiệm lâu dài thoải mái"
+              class="lazy"
+              src="https://cdn.tgdd.vn/Products/Images/42/208847/vsmart-live-tgdd-10.jpg"
+              title="Điện thoại smartphone Vsmart Live | Trải nghiệm lâu dài thoải mái"
+            />
+          </p>
+          <p>
+            Với viên pin này thì bạn có thể sử dụng thoải mái cả một ngày dài và
+            thậm chí qua tới ngày thứ hai với các tác vụ nhẹ hơn.
+          </p>
+        </div>
+      ),
       rate: 3,
       key: 5
     }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Select, Button, Modal, DatePicker } from "antd";
 import { callApiRegister } from "../utils/apiCaller";
+import { Redirect } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -21,14 +22,20 @@ class RegistrationForm extends React.Component {
       if (!err) {
         return callApiRegister(values)
           .then(() => {
-            const { history } = this.props;
-            history.push("/login");
+            return <Redirect to="/login"></Redirect>;
           })
           .catch(error => {
             const { info } = Modal;
+            let message = "";
+            if (error.response !== undefined) {
+              message = error.response.data.message;
+            }
+            if (message === "") {
+              return <Redirect to="/login"></Redirect>;
+            }
             info({
               title: "Đăng ký thất bại",
-              content: error.response.data.message
+              content: message
             });
           });
       }
