@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Button, Row, Col, Card, Divider } from "antd";
 import { Link } from "react-router-dom";
 
 import { incStep, decStep } from "../../actions/step";
+import { numberWithCommas } from "../../utils/helper";
+import { removeAll } from "../../actions/cart";
+import { addOrder } from "../../actions/user";
 
-const Confirmation = ({ incStep, decStep }) => {
+const Confirmation = ({
+  incStep,
+  decStep,
+  userInfo,
+  products,
+  removeAll,
+  addOrder
+}) => {
+  const total_pre = products => {
+    let total = 0;
+    products.forEach(item => (total += item.price * item.number));
+    return total;
+  };
+  const [total, updateTotal] = useState(0);
+  const shipFee = 10000;
+
+  if (products.length > 0 && total === 0) {
+    updateTotal(total_pre(products));
+  }
+
   const next = () => {
     incStep();
   };
@@ -15,91 +37,117 @@ const Confirmation = ({ incStep, decStep }) => {
 
   return (
     <div className="mt-64 confirmation">
-      <Row gutter={24}>
-        <Col span={18}>
+      <Row gutter={24} style={{ marginLeft: 0 }}>
+        <Col sm={24} lg={16} className="no-padding">
           <Card className="card-summary container">
             {/* Received infomation */}
             <Row gutter={16}>
-              <Col span={6}>
+              <Col xs={0} sm={4} span={6}>
                 <p className="uppercase">Nhận hàng</p>
               </Col>
               <Col span={18}>
                 <p>
-                  <span>Nguyễn Văn A</span>
+                  <span>{userInfo.name}</span>
                   <br />
-                  <span>0929123456</span>
+                  <span>{userInfo.phone}</span>
                   <br />
-                  <span>227 Nguyễn Văn Cừ, P4, Q3</span>
+                  <span>{userInfo.address}</span>
                 </p>
               </Col>
             </Row>
 
             {/* Payment method */}
             <Row gutter={16}>
-              <Col span={6}>
+              <Col xs={0} sm={4} span={6}>
                 <p className="uppercase">Phương thức</p>
               </Col>
               <Col span={18}>
                 <p>
-                  <span>Thanh toán khi nhận hàng</span>
+                  <span>{userInfo.paymentMethod}</span>
                 </p>
               </Col>
             </Row>
 
             {/* Products */}
             <Row gutter={16}>
-              <Col span={6}>
+              <Col xs={0} sm={4} md={6} lg={6}>
                 <p className="uppercase">Sản phẩm</p>
               </Col>
-              <Col span={10}>
-                <p>
-                  <span>Điện thoại 1</span>
-                  <br />
-                  <span>Điện thoại 2</span>
-                </p>
-              </Col>
-              <Col span={4}>
-                <p>
-                  <span>1,000,000vnd</span>
-                  <br />
-                  <span>2,000,000vnd</span>
-                </p>
-              </Col>
-              <Col span={4}>
-                <p>
-                  <span>x1</span>
-                  <br />
-                  <span>x2</span>
-                </p>
+              <Col xs={24} sm={20} md={18} lg={18}>
+                {products.map((value, index) => (
+                  <Row gutter={16}>
+                    <Col xs={12} sm={14} md={10} lg={10}>
+                      <p>
+                        <span>{value.name}</span>
+                      </p>
+                    </Col>
+                    <Col xs={6} sm={4} md={4} lg={4}>
+                      <p>
+                        <span>{numberWithCommas(value.price)}₫</span>
+                      </p>
+                    </Col>
+                    <Col offset={1} xs={2} sm={2} md={3} lg={3}>
+                      <p>
+                        <span>x{value.number}</span>
+                      </p>
+                    </Col>
+                  </Row>
+                ))}
               </Col>
             </Row>
           </Card>
         </Col>
-        <Col span={6} className="summary container" style={{ padding: 24 }}>
+        <Col
+          sm={24}
+          lg={6}
+          className="summary container"
+          style={{ padding: 12 }}
+        >
           <p className="uppercase">Đơn hàng</p>
-          <p className="number">5,000,000vnd</p>
+          <p className="number">{numberWithCommas(total)}₫</p>
           <p className="uppercase">Phí vận chuyển</p>
-          <p className="number">10,000vnd</p>
+          <p className="number">{numberWithCommas(shipFee)}₫</p>
           <Divider />
-          <p className="bold number">5,010,000vnd</p>
+          <p className="bold number">{numberWithCommas(shipFee + total)}₫</p>
           <Link to="/payment/complete">
-            <Button type="primary" className="btn-confirm" onClick={next}>
-              Xác nhận
-            </Button>
-          </Link>
-          <Link to="/payment/select-method">
             <Button
-              type="secondary"
-              className="btn-confirm mt-24"
-              onClick={back}
+              type="primary"
+              className="btn-confirm"
+              onClick={() => {
+                addOrder(userInfo, products);
+                removeAll();
+                next();
+              }}
             >
-              Quay lại
+              Xác nhận
             </Button>
           </Link>
         </Col>
       </Row>
+      <Link to="/payment/select-method">
+        <Button type="secondary" className="mt-24 mb-24" onClick={back}>
+          Quay lại
+        </Button>
+      </Link>
     </div>
   );
 };
 
-export default connect(null, { incStep, decStep })(Confirmation);
+const mapStateToProps = state => {
+  return {
+    userInfo: {
+      name: state.user.name,
+      phone: state.user.phone,
+      address: state.user.address[state.user.addressActiveIndex],
+      paymentMethod: state.user.paymentMethod
+    },
+    products: state.cart.list
+  };
+};
+
+export default connect(mapStateToProps, {
+  incStep,
+  decStep,
+  removeAll,
+  addOrder
+})(Confirmation);

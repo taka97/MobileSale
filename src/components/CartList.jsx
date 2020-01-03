@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { numberWithCommas } from "../utils/helper";
 
-import { InputNumber, Modal, Button } from "antd";
+import { InputNumber, Modal } from "antd";
 import { adjust, remove } from "../actions/cart";
 
 // modal
@@ -10,16 +10,15 @@ const { confirm } = Modal;
 
 const CartList = ({ list, adjust, remove }) => {
   const [total, updateTotal] = useState(0);
-  const showConfirm = e => {
+  const confirmDelete = index => {
     confirm({
       title: "Do you want to delete these items?",
       content:
         "When clicked the OK button, this dialog will be closed after 1 second",
       onOk() {
         // delete index
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-        }).catch(() => console.log("Oops errors!"));
+        remove(index);
+        sum(list);
       },
       onCancel() {}
     });
@@ -36,12 +35,12 @@ const CartList = ({ list, adjust, remove }) => {
     updateTotal(total);
   };
 
-  if (total === 0 && list.length != 0) {
+  if (total === 0 && list.length !== 0) {
     sum(list);
   }
 
   return (
-    <div class="ant-table-wrapper container">
+    <div class="ant-table-wrapper container cart-table">
       <div class="ant-spin-nested-loading">
         <div class="ant-spin-container">
           <div class="ant-table ant-table-default ant-table-scroll-position-left">
@@ -128,10 +127,7 @@ const CartList = ({ list, adjust, remove }) => {
                           <button
                             type="button"
                             class="ant-btn delete ant-btn-danger"
-                            onClick={() => {
-                              remove(index);
-                              sum(list);
-                            }}
+                            onClick={index => confirmDelete()}
                           >
                             <span>Xóa</span>
                           </button>

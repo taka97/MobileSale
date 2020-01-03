@@ -1,64 +1,47 @@
-import { callApiLogin } from '../utils/apiCaller';
+import { callApiLogin } from "../utils/apiCaller";
 
 export const actLogin = user => ({
-    type: 'LOGIN',
-    user
+  type: "LOGIN",
+  user
 });
 
 export const actLoginErr = () => ({
-    type: 'LOGIN_ERR'
+  type: "LOGIN_ERR"
 });
 
 export const actLoginRequest = user => {
-    return dispatch => {
-        return callApiLogin(user)
-            .then(res => {
-                localStorage.setItem('username', res.data.user.username);
-                localStorage.setItem('email', res.data.user.email);
-                localStorage.setItem('fullname', res.data.user.fullname);
-                localStorage.setItem('phone', res.data.user.phone);
-                localStorage.setItem('avatar', res.data.user.avatar);
-                localStorage.setItem('stratery', res.data.user.stratery);
-                localStorage.setItem('usertoken', res.data.token);
-                dispatch(actLogin(res.data));
-            })
-            .catch(() => {
-                dispatch(actLoginErr());
-            });
-    };
+  return dispatch => {
+    return callApiLogin(user)
+      .then(res => {
+        const user = {
+          userId: res.data.userId,
+          accessToken: res.data.accessToken
+        };
+        localStorage.setItem("accessToken", user.accessToken);
+        localStorage.setItem("userId", user.userId);
+        dispatch(actLogin(user));
+      })
+      .catch(() => {
+        dispatch(actLoginErr());
+      });
+  };
 };
 
-export const actGetUser = () => {
-    return dispatch => {
-        dispatch(
-            actLogin({
-                username: localStorage.getItem('username'),
-                email: localStorage.getItem('email'),
-                fullname: localStorage.getItem('fullname'),
-                phone: localStorage.getItem('phone'),
-                avatar: localStorage.getItem('avatar'),
-                stratery: localStorage.getItem('strategy'),
-                usertoken: localStorage.getItem('usertoken')
-            })
-        );
-    };
+export const actGetLocalUser = () => {
+  return {
+    type: "GET_LOCAL_USER"
+  };
 };
-
 
 export const actLogout = () => {
-    return dispatch => {
-        localStorage.removeItem('username');
-        localStorage.removeItem('email');
-        localStorage.removeItem('fullname');
-        localStorage.removeItem('phone');
-        localStorage.removeItem('avatar');
-        localStorage.removeItem('strategy');
-        localStorage.removeItem('usertoken');
-        dispatch(actLogin({ username: undefined, usertoken: undefined }));
-    };
+  localStorage.removeItem("userId");
+  localStorage.removeItem("accessToken");
+  return {
+    type: "LOGOUT"
+  };
 };
 
 export const actCallbackLink = link => ({
-    type: 'CALLBACK_LINK',
-    link
+  type: "CALLBACK_LINK",
+  link
 });

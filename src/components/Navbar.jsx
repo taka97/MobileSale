@@ -4,30 +4,37 @@ import { Menu, Icon, Input } from "antd";
 import { Link } from "react-router-dom";
 import {
   actLoginRequest,
-  actGetUser,
+  actGetLocalUser,
   actLogout,
   actCallbackLink
 } from "../actions/Auth";
-import { Button } from "antd";
+import { getCategories } from "../actions/products";
 
 const { SubMenu } = Menu;
 
 class Navbar extends React.Component {
   render() {
-    const { username, actLogout } = this.props;
-    let login_logout, cart, register;
-    if (username && username !== undefined) {
+    const { categories, actGetLocalUser } = this.props;
+    let { userId } = this.props;
+    const { actLogout } = this.props;
+
+    if (userId === undefined) {
+      actGetLocalUser();
+    }
+
+    let login_logout, register;
+    if (userId !== null) {
       login_logout = (
         <Menu.Item key="logout">
-          <Button onClick={actLogout}>Đăng xuất</Button>
+          <Link to="/" onClick={actLogout}>
+            Đăng xuất
+          </Link>
         </Menu.Item>
       );
-      cart = (
-        <Menu.Item key="cart">
-          <Link to="/cart">Giỏ hàng</Link>
-        </Menu.Item>
-      );
+      register = "";
     } else {
+      // didn't login
+      actLogout();
       login_logout = (
         <Menu.Item key="login">
           <Link to="/login">Đăng nhập</Link>
@@ -48,18 +55,8 @@ class Navbar extends React.Component {
             theme="dark"
             className="float-right transparent"
           >
-            <Menu.Item key="login">
-              <Link to="/login">Đăng nhập</Link>
-            </Menu.Item>
-            <Menu.Item key="register">
-              <Link to="/register">Đăng kí</Link>
-            </Menu.Item>
-            <Menu.Item key="payment">
-              <Link to="/payment">Thanh toán (temp)</Link>
-            </Menu.Item>
-            <Menu.Item key="admin">
-              <Link to="/admin">Admin (temp)</Link>
-            </Menu.Item>
+            {login_logout}
+            {register}
           </Menu>
         </div>
 
@@ -80,13 +77,11 @@ class Navbar extends React.Component {
                 </span>
               }
             >
-              <Menu.Item key="iphone">
-                <Link to="/category">Iphone</Link>
-              </Menu.Item>
-              <Menu.Item key="samsung">Samsung</Menu.Item>
-              <Menu.Item key="xiaomi">Xiaomi</Menu.Item>
-              <Menu.Item key="oppo">Oppo</Menu.Item>
-              <Menu.Item key="vsmart">Vsmart</Menu.Item>
+              {categories.map(value => (
+                <Menu.Item key={value}>
+                  <Link to={`/category/${value}`}>{value}</Link>
+                </Menu.Item>
+              ))}
             </SubMenu>
             <Link to="/">
               <Icon type="home" className="logo" />
@@ -110,23 +105,20 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  username: state.auth.username,
-  usertoken: state.auth.usertoken,
-  email: state.auth.email,
-  phone: state.auth.phone,
-  fullname: state.auth.fullname,
-  avatar: state.auth.avatar,
-  stratery: state.auth.stratery,
+  userId: state.auth.userId,
+  accessToken: state.auth.accessToken,
 
   err: state.auth.err,
-  callbackLink: state.auth.callbackLink
+  callbackLink: state.auth.callbackLink,
+  categories: state.products.categories
 });
 
 const mapDispatchToProps = dispatch => ({
   actLoginRequest: user => dispatch(actLoginRequest(user)),
-  actGetUser: () => dispatch(actGetUser()),
+  actGetLocalUser: () => dispatch(actGetLocalUser()),
   actLogout: () => dispatch(actLogout()),
-  actCallbackLink: link => dispatch(actCallbackLink(link))
+  actCallbackLink: link => dispatch(actCallbackLink(link)),
+  getCategories: () => dispatch(getCategories)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -23,7 +23,6 @@
 /* payment */
 .payment-process {
   max-width: 1013px;
-  min-width: 700px;
   margin: auto;
 }
 
@@ -85,12 +84,12 @@
 
 /* address selection */
 .address-list {
-  width: 700px;
   margin: auto;
 }
 .address-card {
-  width: 600px;
+  max-width: 450px;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .group-button-center {
@@ -134,9 +133,11 @@
 .card-summary {
   border-radius: 10px;
   max-width: 600px;
+  margin-bottom: 16px;
 }
 .summary {
   width: 200px;
+  margin-bottom: 16px;
 }
 .btn-confirm {
   width: 100%;
@@ -470,6 +471,9 @@
   font-size: 16px;
   color: black;
   display: block;
+  white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
 }
 .card .rate {
   margin-top: 5px;
@@ -527,6 +531,14 @@
 }
 
 /* Detail page */
+.short-detail {
+  max-width: 940px;
+  margin: auto;
+}
+.short-detail .big-card {
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
 .short-detail::after {
   content: "";
   clear: both;
@@ -551,10 +563,9 @@
 
 .summary-detail {
   float: left;
-  margin-left: 14px;
   padding: 14px;
-  min-width: 300px;
-  max-width: 60%;
+  min-width: 314px;
+  max-width: 600px;
 }
 .read-content {
   width: 40em;
@@ -562,6 +573,10 @@
 }
 
 /* Cart page */
+.cart-table {
+  min-width: 700px;
+  overflow-x: auto;
+}
 .pay-btn {
   text-transform: uppercase;
   margin: 24px 0;
@@ -620,4 +635,9 @@
   float: left;
   margin-top: 50px;
   margin-left: 24px;
+}
+
+/* Custom style */
+.no-padding {
+  padding: 0 !important;
 }

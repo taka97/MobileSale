@@ -11,9 +11,13 @@ const Footer = () => {
       <Col xs={{ span: 11, offset: 1 }} lg={{ span: 8, offset: 4 }}>
         <div style={{ fontSize: 14, fontWeight: 700 }}>Nineteen members</div>
         <div>
-          Ndk
+          1512174 - Hồ Văn Hoàng
           <br />
-          ...
+          1612104 - Nguyễn Hữu Điền
+          <br />
+          1612310 - Nguyễn Đăng Khởi
+          <br />
+          1612586 - Trương Hoài Tâm
         </div>
       </Col>
     </Row>

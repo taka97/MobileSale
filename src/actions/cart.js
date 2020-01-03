@@ -12,6 +12,10 @@ export const remove = index => ({
   payload: index
 });
 
+export const removeAll = () => ({
+  type: "REMOVE_ALL"
+})
+
 export const adjust = (index, number) => ({
   type: "ADJUST",
   payload: { index, number }

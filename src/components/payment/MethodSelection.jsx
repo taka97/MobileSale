@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Card, Button } from "antd";
+import { Card, Button, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 
 import { incStep, decStep } from "../../actions/step";
+import { updatePaymentMethod } from "../../actions/user";
 
-const MethodSelection = ({ incStep, decStep }) => {
-  const [isActive, changeActive] = useState(false);
-  const changeAddress = () => {
-    changeActive(!isActive);
+const MethodSelection = ({
+  incStep,
+  decStep,
+  updatePaymentMethod,
+  paymentMethod
+}) => {
+  const changePayment = method => {
+    updatePaymentMethod(method);
   };
+
+  const paymentMethods = ["ATM", "Thanh toán khi nhận hàng"];
 
   const back = () => {
     decStep();
@@ -20,25 +27,21 @@ const MethodSelection = ({ incStep, decStep }) => {
 
   return (
     <div>
-      <div className="method-container mt-64">
-        <Card
-          title="ATM"
-          hoverable
-          onClick={changeAddress}
-          className={`${
-            isActive ? "active " : ""
-          } card-atm inline-block mr-36 container`}
-        ></Card>
-        <Card
-          title="Thanh toán khi nhận hàng"
-          hoverable
-          onClick={changeAddress}
-          className={`${
-            !isActive ? "active " : ""
-          } card-atm inline-block container`}
-        ></Card>
-      </div>
-      <div className="mt-48">
+      <Row type="flex" justify="center" align="middle" gutter={24}>
+        {paymentMethods.map((value, index) => (
+          <Col sm={24} md={8}>
+            <Card
+              title={value}
+              hoverable
+              onClick={() => changePayment(value)}
+              className={`${
+                value === paymentMethod ? "active " : ""
+              } card-atm inline-block container mb-24`}
+            ></Card>
+          </Col>
+        ))}
+      </Row>
+      <div className="mt-36 mb-36">
         <div className="group-button-center">
           <Link to="/payment">
             <Button className="mr-80" onClick={back}>
@@ -56,4 +59,8 @@ const MethodSelection = ({ incStep, decStep }) => {
   );
 };
 
-export default connect(null, { incStep, decStep })(MethodSelection);
+export default connect(state => ({ paymentMethod: state.user.paymentMethod }), {
+  incStep,
+  decStep,
+  updatePaymentMethod
+})(MethodSelection);

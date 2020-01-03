@@ -30,6 +30,12 @@ export default function getProducts(state = initState, action) {
         list: newList
       };
     }
+    case "REMOVE_ALL": {
+      return {
+        ...state,
+        list: []
+      }
+    }
     default:
       return state;
   }

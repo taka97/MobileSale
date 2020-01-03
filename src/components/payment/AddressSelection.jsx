@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Descriptions, Card, Button } from "antd";
 import { Link } from "react-router-dom";
 
 import { incStep } from "../../actions/step";
+import { updateActiveAddress } from "../../actions/user";
 
-const AddressSelection = ({ incStep }) => {
-  const [isActive, changeActive] = useState(false);
-  const changeAddress = () => {
-    changeActive(!isActive);
+const AddressSelection = ({ incStep, generalInfo, updateActiveAddress }) => {
+  const changeAddress = index => {
+    updateActiveAddress(index);
   };
 
   const next = () => {
@@ -18,39 +18,24 @@ const AddressSelection = ({ incStep }) => {
   return (
     <div>
       <div className="address-list mt-36">
-        <Card
-          hoverable
-          onClick={changeAddress}
-          className={`${
-            isActive ? "active" : ""
-          } address-card mg-auto container`}
-        >
-          <Descriptions>
-            <Descriptions.Item>Nguyen Van A</Descriptions.Item>
-            <Descriptions.Item>0929612345</Descriptions.Item>
-            <br />
-            <Descriptions.Item>227 Nguyen Van Cu, P4, Q3</Descriptions.Item>
-          </Descriptions>
-        </Card>
-        <div style={{ height: 30 }}></div>
-        <Card
-          hoverable
-          onClick={changeAddress}
-          className={`${
-            !isActive ? "active" : ""
-          } address-card mg-auto container`}
-        >
-          <Descriptions>
-            <Descriptions.Item>Nguyen Van A</Descriptions.Item>
-            <Descriptions.Item>0929612345</Descriptions.Item>
-            <br />
-            <Descriptions.Item>227 Nguyen Van Cu, P4, Q3</Descriptions.Item>
-          </Descriptions>
-        </Card>
-        <div style={{ height: 30 }}></div>
-        <Button style={{ marginLeft: 50 }} shape="circle" icon="plus" />
+        {generalInfo.address.map((address, index) => (
+          <Card
+            hoverable
+            onClick={() => changeAddress(index)}
+            className={`${
+              index === generalInfo.addressActiveIndex ? "active" : ""
+            } address-card mg-auto container`}
+          >
+            <Descriptions>
+              <Descriptions.Item>{generalInfo.name}</Descriptions.Item>
+              <Descriptions.Item>{generalInfo.phone}</Descriptions.Item>
+              <br />
+              <Descriptions.Item>{address}</Descriptions.Item>
+            </Descriptions>
+          </Card>
+        ))}
       </div>
-      <div className="mt-36">
+      <div className="mt-36 mb-36">
         <div className="group-button-center">
           <Button className="mr-80" disabled>
             Quay lại
@@ -66,4 +51,14 @@ const AddressSelection = ({ incStep }) => {
   );
 };
 
-export default connect(null, { incStep })(AddressSelection);
+export default connect(
+  state => ({
+    generalInfo: {
+      name: state.user.name,
+      phone: state.user.phone,
+      address: state.user.address,
+      addressActiveIndex: state.user.addressActiveIndex
+    }
+  }),
+  { incStep, updateActiveAddress }
+)(AddressSelection);

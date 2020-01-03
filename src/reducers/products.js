@@ -1,11 +1,13 @@
 import React from "react";
 
 const initState = {
+  categories: ["Iphone", "Samsung", "Xiaomi", "Oppo", "Vsmart"],
   list: [
     {
       imgs: ["imgs/iphone-1.png", "imgs/iphone-2.jfif", "imgs/iphone-3.jfif"],
       img: "imgs/iphone-1.png",
       name: "iPhone 11 pro max 64GB",
+      category: "Iphone",
       price: 33990000,
       short:
         "Trong năm 2019 thì chiếc smartphone được nhiều người mong muốn sở hữu trên tay và sử dụng nhất không ai khác chính là iPhone 11 Pro Max 64GB tới từ nhà Apple",
@@ -71,6 +73,7 @@ const initState = {
       imgs: ["imgs/samsung-1.png"],
       img: "imgs/samsung-1.png",
       name: "Samsung Galaxy Fold 512GB",
+      category: "Samsung",
       price: 50000000,
       short:
         "Chiếc điện thoại màn hình gập đầu tiên của Samsung, đánh dấu sự tiên phong cho một thế hệ mới",
@@ -82,6 +85,7 @@ const initState = {
       imgs: ["imgs/xiaomi-1.jpg"],
       img: "imgs/xiaomi-1.jpg",
       name: "Xiaomi mi mix alpha 512GB",
+      category: "Xiaomi",
       price: 65000000,
       short:
         "Chiếc điện thoại với màn hình bao trọn cả 2 mặt của Xiaomi, đánh dấu sự đột phát mới",
@@ -92,6 +96,7 @@ const initState = {
     {
       imgs: ["imgs/oppo-1.png"],
       img: "imgs/oppo-1.png",
+      category: "Oppo",
       name: "Oppo reno 2 256GB",
       price: 14990000,
       short:
@@ -103,6 +108,7 @@ const initState = {
     {
       imgs: ["imgs/vsmart-1.png"],
       img: "imgs/vsmart-1.png",
+      category: "Vsmart",
       name: "Vsmart live 64GB",
       price: 3790000,
       short:
@@ -111,13 +117,27 @@ const initState = {
       rate: 3,
       key: 5
     }
-  ]
+  ],
+  detail: []
 };
 
 export default function getProducts(state = initState, action) {
   switch (action.type) {
-    case "GET_LIST":
-      return state.list;
+    case "REQUEST_CATEGORIES":
+      return {
+        ...state,
+        isFetching: true
+      };
+    case "REQUEST_CATEGORIES_SUCCESS":
+      return {
+        ...state,
+        isFetching: false,
+        categories: action.payload.splice(0)
+      };
+    case "REQUEST_LIST":
+      return { ...state, isFetching: true };
+    case "REQUEST_LIST_SUCCESS":
+      return { ...state, isFetching: false, list: action.payload.splice(0) };
     case "GET_DETAIL": {
       return {
         ...state,
